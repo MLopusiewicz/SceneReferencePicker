@@ -7,7 +7,7 @@ using UnityEngine;
 public class DemoPicker : MonoBehaviour {
 
 	[SRP(typeof(PathPicker), "Default")]
-	public MeshRenderer asdf;
+	public DemoComponent asdf;
 
 	[SRP(typeof(PathPicker), "Default")]
 	public ListDrawer<MeshRenderer> rends;

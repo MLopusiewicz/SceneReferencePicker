@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-namespace LoneTower.Utility.SRP {
 
+namespace LoneTower.Utility.SRP {
 	public abstract class PickDrawer {
 
 		static SelectionBank<Color> colorBank = new SelectionBank<Color>(new Color[]{

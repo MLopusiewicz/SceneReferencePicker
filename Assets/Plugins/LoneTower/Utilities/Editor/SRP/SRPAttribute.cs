@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static PickerData;
+using static LoneTower.Utility.SRP.PickerData;
 
 namespace LoneTower.Utility.SRP {
 
