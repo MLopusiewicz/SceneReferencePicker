@@ -33,9 +33,11 @@ namespace LoneTower.Utility.SRP {
 
 		public Vector3[] Choices {
 			get {
+				if(picker.input.possible == null)
+					return new Vector3[0];
 				Vector3[] v = new Vector3[picker.input.possible.Length];
 				for(int i = 0; i < picker.input.possible.Length; i++) {
-					v[i] = GetPos(picker.selection[i]);
+					v[i] = GetPos(picker.input.possible[i].transform);
 				}
 				return v;
 			}

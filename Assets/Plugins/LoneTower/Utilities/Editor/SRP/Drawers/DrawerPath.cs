@@ -47,11 +47,12 @@ namespace LoneTower.Utility.SRP {
 
 				Handles.DrawLine(selection[i], selection[i - 1]);
 			}
-		}
+		} 
+
 		protected override void DrawChoices(Vector3[] choices) {
-			Handles.color = color;
+			Handles.color = SRPSettings.choiceColor;
 			foreach(var a in choices) {
-				Handles.DrawWireDisc(a, Vector3.up, 0.1f);
+				Handles.DrawSolidDisc(a, GetCameraDirection(a), 0.1f);
 			}
 		}
 	}

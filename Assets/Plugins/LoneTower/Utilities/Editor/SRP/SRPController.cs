@@ -28,19 +28,37 @@ namespace LoneTower.Utility.SRP {
 			visibility = new VisibilityButton();
 			paintButton = new PaintButton();
 
-			visibility.OnEnable += drawer.Hide;
-			visibility.OnEnable += logic.Disable;
-
-			visibility.OnDisable += drawer.Show;
+			visibility.OnEnable += VisibilityOn;
+			visibility.OnDisable += VisibilityOff;
 
 
-			paintButton.OnEnable += logic.Enable;
-			paintButton.OnEnable += drawer.Show;
-
-			paintButton.OnDisable += logic.Disable;
+			paintButton.OnEnable += PaintOn;
+			paintButton.OnDisable += PaintOff;
 
 			logic.Disable();
 			drawer.Hide();
+
+		}
+
+		void VisibilityOn() {
+			drawer.Hide();
+			logic.Disable();
+			drawer.showChoices = false;
+		}
+
+		void VisibilityOff() {
+			drawer.Show();
+		}
+
+		void PaintOn() {
+			logic.Enable();
+			drawer.Show();
+			drawer.showChoices = true;
+		}
+
+		void PaintOff() {
+			logic.Disable();
+			drawer.showChoices = false;
 
 		}
 

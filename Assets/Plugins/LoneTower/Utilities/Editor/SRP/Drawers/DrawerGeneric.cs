@@ -26,7 +26,7 @@ namespace LoneTower.Utility.SRP {
 			}
 		}
 		protected override void DrawChoices(Vector3[] choices) {
-			Handles.color = color;
+			Handles.color = SRPSettings.Instance.choiceColor;
 			foreach(var a in choices) {
 				Handles.DrawWireDisc(a, GetCameraDirection(a), 0.1f);
 			}
