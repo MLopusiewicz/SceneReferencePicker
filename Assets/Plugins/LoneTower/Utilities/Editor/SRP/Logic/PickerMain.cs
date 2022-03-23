@@ -6,10 +6,10 @@ using UnityEditor;
 using UnityEngine;
 
 namespace LoneTower.Utility.SRP {
-	public class PickerMain : PickLogic  {
+	public class PickerMain : PickerBase  {
 		bool subtractive;
 
-		public PickerMain(LayerMask m, Type t, List<Component> list = null) : base(m, t, list) {
+		public PickerMain(Type t, List<Component> list = null) : base(t, list) {
 		}
 
 

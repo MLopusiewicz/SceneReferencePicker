@@ -6,12 +6,13 @@ using UnityEngine;
 
 public class DemoPicker : MonoBehaviour {
 
-	[SRP(typeof(PathPicker), "Default")]
+	[SRP(typeof(SinglePicker))]
 	public DemoComponent asdf;
 
-	[SRP(typeof(PathPicker), "Default")]
-	public ListDrawer<MeshRenderer> rends;
+	[SRP(typeof(PathPicker))]
+	public ListDrawer<DemoComponent> asdfasdfasd;
 
- 
-	//public ListDrawer<DemoComponent> demo;
+	//[SRP(typeof(PathPicker))]
+	//public ListDrawer<MeshRenderer> rends;
+
 }

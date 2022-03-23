@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using static LoneTower.Utility.SRP.PickLogic;
+using static LoneTower.Utility.SRP.PickerBase;
 
 namespace LoneTower.Utility.SRP {
-	public class OrderDrawer : PickDrawer {
-		protected override void EmptyHandleDrawer(Ray mouseRay) {
+	public class DrawerPath : DrawerBase {
+		protected override void DrawEmptyHandle(Ray mouseRay) {
 
 		}
 
-		protected override void HandleDrawer(Vector3 hover, bool contained) {
+		protected override void DrawHandle(Vector3 hover, bool contained) {
 			switch(drawTarget.mode) {
 				case brushMode.ctrl:
 					Handles.color = Color.green;
@@ -26,7 +26,7 @@ namespace LoneTower.Utility.SRP {
 			Handles.DrawWireDisc(hover, Vector3.up, 0.2f);
 		}
 
-		protected override void SelectionDrawer(Vector3[] selection) {
+		protected override void DrawSelection(Vector3[] selection) {
 			if(selection.Length == 0)
 				return;
 			Handles.color = color;
@@ -39,12 +39,19 @@ namespace LoneTower.Utility.SRP {
 			for(int i = 1; i < selection.Length; i++) {
 				Handles.color = color;
 				if(drawTarget.mode == brushMode.ctrl) {
-					if(selection[i] == drawTarget.Hover) {
-						Handles.DrawLine(selection[i], selection[i - 1], 3);
-					}
+					if(drawTarget.IsHovering)
+						if(selection[i] == drawTarget.Hover) {
+							Handles.DrawLine(selection[i], selection[i - 1], 3);
+						}
 				}
 
 				Handles.DrawLine(selection[i], selection[i - 1]);
+			}
+		}
+		protected override void DrawChoices(Vector3[] choices) {
+			Handles.color = color;
+			foreach(var a in choices) {
+				Handles.DrawWireDisc(a, Vector3.up, 0.1f);
 			}
 		}
 	}

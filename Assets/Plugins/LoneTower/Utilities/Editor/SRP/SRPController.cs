@@ -6,22 +6,22 @@ using UnityEditor;
 using UnityEngine;
 
 namespace LoneTower.Utility.SRP {
-	public class RayPickerController {
+	public class SRPController {
 
-		public PickLogic logic;
-		public PickDrawer drawer;
+		public PickerBase logic;
+		public DrawerBase drawer;
 
 
 		VisibilityButton visibility;
 		PaintButton paintButton;
 
-		public RayPickerController(PickerData data, Type t, Component[] arr = null) {
+		public SRPController(PickerData data, Type t, Component[] arr = null) {
 			List<Component> c = new List<Component>();
 			if(arr != null)
 				c.AddRange(arr);
-			
-			logic = (PickLogic)Activator.CreateInstance(data.logic, new object[] { data.mask, t, c });
-			drawer = (PickDrawer)Activator.CreateInstance(data.drawer);
+
+			logic = (PickerBase)Activator.CreateInstance(data.logic, new object[] { t, c });
+			drawer = (DrawerBase)Activator.CreateInstance(data.drawer);
 			ParserBase parser = (ParserBase)Activator.CreateInstance(data.parser, logic);
 			drawer.drawTarget = parser;
 
@@ -70,6 +70,7 @@ namespace LoneTower.Utility.SRP {
 		}
 
 	}
+
 	public struct State {
 		public bool visible;
 		public bool enabled;

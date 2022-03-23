@@ -5,19 +5,17 @@ using UnityEditor;
 using UnityEngine;
 namespace LoneTower.Utility.SRP {
 	[CustomPropertyDrawer(typeof(SRPAttribute))]
-	public class SRPSingle : SRPSinglePropertyDrawer {
-
-		protected override RayPickerController GetPicker() {
-			SRPAttribute a = (attribute as SRPAttribute);
-			return new RayPickerController(a.data, selectType, Deserialize());
-		}
+	public class SRPDrawerGUI : SRPPropertyDrawer {
 
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
 			base.OnGUI(position, property, label);
-
 			EditorGUI.BeginProperty(position, label, property);
-			if(picker != null)
-				position = picker.InspectorDraw(position, prop.displayName);
+			if(picker != null) {
+				if(isSingle)
+					position = picker.InspectorDraw(position, prop.displayName);
+				else
+					position = picker.InspectorDraw(position, $"{prop.displayName} ({picker.logic.selection.Count})");
+			}
 			if(isSingle)
 				EditorGUI.ObjectField(position, prop, new GUIContent(""));
 

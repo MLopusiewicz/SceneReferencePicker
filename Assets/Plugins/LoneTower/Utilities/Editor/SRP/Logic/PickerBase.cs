@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace LoneTower.Utility.SRP {
 
-	public abstract class PickLogic {
+	public abstract class PickerBase {
 		public event Action<Component> OnStrokeEnd;
 		public enum brushMode { normal, shift, ctrl }
 		public brushMode mode;
@@ -17,13 +17,13 @@ namespace LoneTower.Utility.SRP {
 
 		public List<Component> selection;
 
-		public SceneRaycastPointer input;
+		public SceneMousePicker input;
 
-		public PickLogic(LayerMask m, Type t, List<Component> list = null) {
+		public PickerBase(Type t, List<Component> list = null) {
 			if(list == null)
 				selection = new List<Component>();
 			selection = list;
-			input = new SceneRaycastPointer(m, t);
+			input = new SceneMousePicker(t);
 
 			EditorSceneInput.Instance.ShiftDown += ShiftMode;
 			EditorSceneInput.Instance.ShiftUp += NormalMode;

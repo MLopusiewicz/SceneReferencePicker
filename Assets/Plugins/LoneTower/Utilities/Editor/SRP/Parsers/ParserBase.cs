@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using static LoneTower.Utility.SRP.PickLogic;
+using static LoneTower.Utility.SRP.PickerBase;
 
 namespace LoneTower.Utility.SRP {
 	public abstract class ParserBase : IDrawable {
-		public PickLogic picker;
-		protected ParserBase(PickLogic picker) {
+		public PickerBase picker;
+		protected ParserBase(PickerBase picker) {
 			this.picker = picker;
-		}
-		protected ParserBase() {
 		}
 
 		public bool IsHovering { get { return picker.hover != null; } }
@@ -22,8 +20,28 @@ namespace LoneTower.Utility.SRP {
 
 		public brushMode mode { get { return picker.mode; } }
 
-		public abstract Vector3[] Selection { get; }
+		public Vector3[] Selection {
+			get {
+				Vector3[] v = new Vector3[picker.selection.Count];
+				for(int i = 0; i < picker.selection.Count; i++) {
+					v[i] = GetPos(picker.selection[i]);
+				}
+				return v;
+			}
+		}
+		public Vector3 Hover { get { return GetPos(picker.hover); } }
 
-		public abstract Vector3 Hover { get; }
+		public Vector3[] Choices {
+			get {
+				Vector3[] v = new Vector3[picker.input.possible.Length];
+				for(int i = 0; i < picker.input.possible.Length; i++) {
+					v[i] = GetPos(picker.selection[i]);
+				}
+				return v;
+			}
+		}
+
+		protected abstract Vector3 GetPos(Component t);
 	}
+
 }

@@ -4,11 +4,15 @@ using UnityEditor;
 using UnityEngine;
 
 namespace LoneTower.Utility.SRP {
-	public abstract class SRPSinglePropertyDrawer : SRPBasePropertyDrawer {
+	public abstract class SRPPropertyDrawer : SRPBasePropertyDrawer {
 		protected override void Awake() {
 			base.Awake();
 			picker.drawer.Show();
 
+		}
+		protected override SRPController GetPicker() {
+			SRPAttribute a = (attribute as SRPAttribute);
+			return new SRPController(a.data, selectType, Deserialize());
 		}
 		protected override void Serialize(Component t) {
 			if(isSingle)

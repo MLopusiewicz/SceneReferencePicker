@@ -13,7 +13,7 @@ namespace LoneTower.Utility.Editor {
 		public event Action MouseDown, MouseUp, MousePressing, ShiftDown, ShiftUp, SceneLoop;
 		public event Action CtrlDown, CtrlUp;
 		public event Action<float> MouseScroll;
-
+		public event Action MouseLoop;
 
 
 		public bool LMBpressed { get; private set; }
@@ -55,6 +55,10 @@ namespace LoneTower.Utility.Editor {
 
 		void MouseInput(Event e) {
 			HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));//disables LBM 
+			if(!e.isMouse)
+				return;
+
+			MouseLoop?.Invoke();
 
 			if(e.type == EventType.MouseDown && e.button == 0) {
 				MouseDown?.Invoke();
@@ -63,10 +67,10 @@ namespace LoneTower.Utility.Editor {
 			} else if(e.type == EventType.MouseUp && e.button == 0) {
 				MouseUp?.Invoke();
 				LMBpressed = false;
-			}
-
-			if(LMBpressed) {
-				MousePressing?.Invoke();
+			} else {
+				if(LMBpressed) {
+					MousePressing?.Invoke();
+				}
 			}
 
 			if(MouseScroll != null)

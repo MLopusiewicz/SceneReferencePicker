@@ -6,23 +6,11 @@ using UnityEngine;
 namespace LoneTower.Utility.SRP {
 	public class ParserTransform : ParserBase {
 
-		public ParserTransform(PickLogic picker) : base(picker) {
-		}
-		public ParserTransform() {
-
+		public ParserTransform(PickerBase picker) : base(picker) {
 		}
 
-		public override Vector3[] Selection {
-			get { return picker.selection.Select(x => x.transform.position).ToArray(); }
+		protected override Vector3 GetPos(Component t) {
+			return t.transform.position;
 		}
-
-		public override Vector3 Hover {
-			get {
-				if(picker.hover != null)
-					return picker.hover.transform.position;
-				else return Vector3.zero;
-			}
-		}
-
 	}
 }

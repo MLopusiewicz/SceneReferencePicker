@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace LoneTower.Utility.SRP {
 	public abstract class SRPBasePropertyDrawer : LoneTowerPropertyDrawer {
-		protected RayPickerController picker;
+		protected SRPController picker;
 		State? state;
 		protected bool isSingle;
 		protected Type selectType;
@@ -21,7 +21,7 @@ namespace LoneTower.Utility.SRP {
 					isSingle = false;
 					selectType = fieldInfo.FieldType.GenericTypeArguments[0];
 				} else
-					Debug.LogError("not here m8");
+					Debug.LogError($"[SRP] Type not supported by attribute: {typeof(SRPAttribute)}");
 			}
 			picker = GetPicker();
 			picker.logic.OnStrokeEnd += Serialize;
@@ -31,7 +31,7 @@ namespace LoneTower.Utility.SRP {
 
 		}
 
-		protected abstract RayPickerController GetPicker();
+		protected abstract SRPController GetPicker();
 		protected virtual void OnUndo() {
 			if(picker != null) {
 				state = picker.State;

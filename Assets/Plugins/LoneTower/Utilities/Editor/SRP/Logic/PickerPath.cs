@@ -6,13 +6,13 @@ using UnityEngine;
 
 
 namespace LoneTower.Utility.SRP {
-	public class PickerOrder : PickLogic {
+	public class PickerPath : PickerBase {
 
 		bool drag;
 		int index;
 
 
-		public PickerOrder(LayerMask m, Type t, List<Component> list = null) : base(m, t, list) {
+		public PickerPath(Type t, List<Component> list = null) : base(t, list) {
 		}
 
 		protected override void StartStroke(Component t) {
@@ -24,6 +24,7 @@ namespace LoneTower.Utility.SRP {
 				selection.Remove(t);
 				return;
 			}
+
 			if(mode == brushMode.ctrl) {
 				if(selection.Contains(t)) {
 					selection.Insert(index = selection.IndexOf(t), t);
@@ -35,13 +36,15 @@ namespace LoneTower.Utility.SRP {
 				drag = true;
 				index = selection.IndexOf(t);
 				return;
-			}
+			} else
+				selection.Add(t);
 
 		}
 
 		protected override void Stroke(Component t) {
 			if(t == null)
 				return;
+
 			if(mode == brushMode.shift) {
 				selection.Remove(t);
 				return;

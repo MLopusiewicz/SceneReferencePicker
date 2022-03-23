@@ -18,18 +18,12 @@ namespace LoneTower.Utility.SRP {
 			if(CheckType(t, typeof(PickerData))) {
 				data = (PickerData)Activator.CreateInstance(t);
 			} else {
-				Debug.LogError($"Wrong type {t }. Expected type: {typeof(PickerData)}. Falling to default");
+				Debug.LogWarning($"[SRP]Wrong type {t }. Expected type: {typeof(PickerData)}. Falling to default");
 				data = defaultPicker;
 			}
 		}
-		public SRPAttribute(Type t, params string[] layers) {
-			if(CheckType(t, typeof(PickerData))) {
-				data = (PickerData)Activator.CreateInstance(t);
-				data.mask = LayerMask.GetMask(layers);
-			} else {
-				Debug.LogError($"Wrong type {t }. Expected type: {typeof(PickerData)}. Falling to default");
-				data = defaultPicker;
-			}
+		public SRPAttribute(Type logic, Type drawer, Type parser) {
+			data = new PickerData(logic, parser, drawer);
 		}
 
 	}
