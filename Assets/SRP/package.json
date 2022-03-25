@@ -4,9 +4,9 @@
   "displayName": "SRP - Scene Reference Picker",
   "description": "Fully generic inspector extension for component picking from Scene View.",
   "unity": "2019.1", 
-  "documentationUrl": "https://example.com/",
-  "changelogUrl": "https://example.com/changelog.html",
-  "licensesUrl": "https://example.com/licensing.html",
+  "documentationUrl": "https://github.com/MLopusiewicz/SceneReferencePicker/blob/master/Assets/SRP/README.md",
+  "changelogUrl": "https://github.com/MLopusiewicz/SceneReferencePicker/blob/master/Assets/SRP/CHANGELOG.md",
+  "licensesUrl": "https://github.com/MLopusiewicz/SceneReferencePicker/blob/master/Assets/SRP/LICENSE.md",
   "dependencies": {  },
   "samples": [{
   "displayName": "Demo",
@@ -17,7 +17,12 @@
   "category": "editor extensions",
   "author": {
     "name": "LoneTower",
-    "email": "unity@example.com",
-    "url": "https://www.unity3d.com"
+    "email": "bananozuar@gmail.com",
+    "url": "lonetower.studio"
   }
 }
+
+/*
+https://github.com/MLopusiewicz/SceneReferencePicker.git?path=/Assets/SRP/
+
+*/
