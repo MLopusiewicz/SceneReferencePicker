@@ -13,6 +13,17 @@ namespace LoneTower.Utility.Editor {
 
 		protected LoneTowerPropertyDrawer() {
 			Selection.selectionChanged += Destroy;
+			EditorApplication.playModeStateChanged += OnChange;
+			Undo.undoRedoPerformed += Reset;
+		}
+
+		protected virtual void Reset() {
+
+		}
+
+		private void OnChange(PlayModeStateChange obj) {
+			//if(obj == PlayModeStateChange.ExitingEditMode || obj == PlayModeStateChange.ExitingPlayMode)
+				Reset();
 		}
 
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
@@ -26,6 +37,7 @@ namespace LoneTower.Utility.Editor {
 
 		private void Destroy() {
 			OnDestroy();
+			Undo.undoRedoPerformed -= Reset;
 			Selection.selectionChanged -= Destroy;
 		}
 

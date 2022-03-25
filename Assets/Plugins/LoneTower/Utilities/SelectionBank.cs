@@ -6,61 +6,66 @@ using UnityEngine;
 
 
 namespace LoneTower.Utility {
-    public class SelectionBank<T> {
+	public class SelectionBank<T> {
 
-        List<Tuple<T, bool>> picks;
-        public SelectionBank(T[] choices) {
-            picks = new List<Tuple<T, bool>>();
-            foreach(T item in choices) {
-                picks.Add(new Tuple<T, bool>(item, true));
-            }
-        }
+		List<Tuple<T, bool>> picks;
+		public SelectionBank(T[] choices) {
+			picks = new List<Tuple<T, bool>>();
+			foreach(T item in choices) {
+				picks.Add(new Tuple<T, bool>(item, true));
+			}
+		}
 
+		public T GetNext(T o) {
+			int index = picks.IndexOf(picks.First(x => x.Item1.Equals(o)));
 
-        public T GetNext(T o) {
-            int index = picks.IndexOf(picks.First(x => x.Item1.Equals(o)));
+			for(int i = index; i < picks.Count; i++) {
+				if(picks[i].Item2) {
+					picks[index] = new Tuple<T, bool>(picks[index].Item1, true);
 
-            for(int i = index; i < picks.Count; i++) {
-                if(picks[i].Item2) {
-                    picks[index] = new Tuple<T, bool>(picks[index].Item1, true);
+					picks[i] = new Tuple<T, bool>(picks[i].Item1, false);
+					return picks[i].Item1;
+				}
+			}
+			return picks[index].Item1;
+		}
 
-                    picks[i] = new Tuple<T, bool>(picks[i].Item1, false);
-                    return picks[i].Item1;
-                }
-            }
-            return picks[index].Item1;
-        }
+		public T GetPrevious(T o) {
+			int index = picks.IndexOf(picks.First(x => x.Item1.Equals(o)));
 
-        public T GetPrevious(T o) {
-            int index = picks.IndexOf(picks.First(x => x.Item1.Equals(o)));
+			for(int i = index; i >= 0; i--) {
+				if(picks[i].Item2) {
+					picks[index] = new Tuple<T, bool>(picks[index].Item1, true);
 
-            for(int i = index; i >= 0; i--) {
-                if(picks[i].Item2) {
-                    picks[index] = new Tuple<T, bool>(picks[index].Item1, true);
+					picks[i] = new Tuple<T, bool>(picks[i].Item1, false);
+					return picks[i].Item1;
+				}
+			}
+			return picks[index].Item1;
+		}
 
-                    picks[i] = new Tuple<T, bool>(picks[i].Item1, false);
-                    return picks[i].Item1;
-                }
-            }
-            return picks[index].Item1;
-        }
+		public T GetClosest(int index) {
 
-        public T GetClosest(int index) {
+			for(int i = index; i < picks.Count; i++) {
+				if(picks[i].Item2) {
+					picks[i] = new Tuple<T, bool>(picks[i].Item1, false);
+					return picks[i].Item1;
+				}
+			}
+			picks[index] = new Tuple<T, bool>(picks[index].Item1, false);
+			return picks[index].Item1;
+		}
 
-            for(int i = index; i < picks.Count; i++) {
-                if(picks[i].Item2) {
-                    picks[i] = new Tuple<T, bool>(picks[i].Item1, false);
-                    return picks[i].Item1;
-                }
-            }
-            picks[index] = new Tuple<T, bool>(picks[index].Item1, false);
-            return picks[index].Item1;
-        }
+		public void Free(T o) {
+			int index = picks.IndexOf(picks.First(x => x.Item1.Equals(o)));
+			picks[index] = new Tuple<T, bool>(picks[index].Item1, true);
+		}
 
-        public void Free(T o) {
-            int index = picks.IndexOf(picks.First(x => x.Item1.Equals(o)));
-            picks[index] = new Tuple<T, bool>(picks[index].Item1, true);
-        }
-
-    }
+		public T[] GetAll() {
+			return picks.Select(x => x.Item1).ToArray();
+		}
+		public SelectionBank<T> Copy() {
+			return new SelectionBank<T>(picks.Select(x => x.Item1).ToArray());
+		}
+	}
 }
