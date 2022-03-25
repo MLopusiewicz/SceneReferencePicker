@@ -8,6 +8,11 @@
   "changelogUrl": "https://example.com/changelog.html",
   "licensesUrl": "https://example.com/licensing.html",
   "dependencies": {  },
+  "samples": [{
+  "displayName": "Demo",
+  "description": "Demo picker with demo component",
+  "path": "Samples~/Demo"
+  }],
   "keywords": [ "attribute", "inspector", "editor" ],
   "category": "editor extensions",
   "author": {
