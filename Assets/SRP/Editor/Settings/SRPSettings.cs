@@ -2,12 +2,30 @@ using LoneTower.Utility;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using UnityEditor;
+using UnityEditor.Compilation;
 using UnityEngine;
 
 namespace LoneTower.Utility.SRP {
 	public class SRPSettings : Singleton<SRPSettings> {
-		static string assetPath = @"Assets/Plugins/LoneTower/Utilities/SRP/Editor/Settings/Settings.asset";
+		static string assetPath {
+			get {
+				var absolute = Path.Combine(AssemblyRootDirectory, "Editor\\Settings\\");
+				string rel = "Assets" + absolute.Substring(Application.dataPath.Length);
+				return rel;
+			}
+
+		}
+		static string AssemblyRootDirectory {
+			get {
+				string g = CompilationPipeline.GetAssemblyDefinitionFilePathFromAssemblyName("LoneTower.Utility.SRP.Editor");
+				return Directory.GetParent(g).FullName;
+			}
+		} 
+
+		static string assetName = @"Settings.asset";
 
 		public static Color choiceColor {
 			get {
@@ -35,7 +53,7 @@ namespace LoneTower.Utility.SRP {
 			get { return Instance.data.lineScale; }
 			set {
 				Instance.data.lineScale = value;
-			} 
+			}
 		}
 		public static float ChoiceSize {
 			get { return Instance.data.choiceSize; }
@@ -51,10 +69,14 @@ namespace LoneTower.Utility.SRP {
 
 		public void Save() {
 			TextAsset text = new TextAsset(JsonUtility.ToJson(data));
-			AssetDatabase.CreateAsset(text, assetPath);
+			if(!Directory.Exists(assetPath))
+				Directory.CreateDirectory(assetPath);
+			AssetDatabase.CreateAsset(text, assetPath + "\\" + assetName);
 		}
 
 		public void Load() {
+			if(!Directory.Exists(assetPath))
+				Directory.CreateDirectory(assetPath);
 			TextAsset a = AssetDatabase.LoadAssetAtPath<TextAsset>(assetPath);
 
 			if(a == null) {
