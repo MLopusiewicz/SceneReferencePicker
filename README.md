@@ -18,10 +18,8 @@ Declare SRP attribute above your Component type field.
 ## Contact
 
 you can find me at:  <br>
-[email](marcin.lopusiewicz@outlook.com)  <br>
-[twitter](twitter.com/@MLopusiewicz) 
+[twitter](https://twitter.com/MLopusiewicz) 
 
-if you found it usefull, consider getting me a beer:
-
-https://www.paypal.com/donate/?hosted_button_id=EJSQ62Q2DJVBE
+if you found it usefull, consider getting me a beer:  <br>
+[Donate](https://www.paypal.com/donate/?hosted_button_id=EJSQ62Q2DJVBE) 
 
