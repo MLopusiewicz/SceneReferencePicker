@@ -5,9 +5,18 @@ using UnityEditor;
 using UnityEngine;
 
 namespace LoneTower.Utility.Editor {
-	public class EditorSceneInput : Singleton<EditorSceneInput> {
+	public class EditorSceneInput {
 
-		public bool inputInterception;
+		public static EditorSceneInput Instance {
+			get {
+				if(instance == null)
+					instance = new EditorSceneInput();
+				return instance;
+			}
+		}
+		static EditorSceneInput instance;
+
+		public bool inputInterception; 
 		public bool shiftPressed { get; private set; }
 		public bool ctrlPressed { get; private set; }
 		public event Action MouseDown, MouseUp, MousePressing, ShiftDown, ShiftUp, SceneLoop;

@@ -9,10 +9,21 @@ using UnityEditor.Compilation;
 using UnityEngine;
 
 namespace LoneTower.Utility.SRP {
-	public class SRPSettings : Singleton<SRPSettings> {
+	public class SRPSettings {
+
+		public static SRPSettings Instance {
+			get {
+				if(instance == null)
+					instance = new SRPSettings();
+				return instance;
+			}
+		}
+		static SRPSettings instance;
+
+
 		static string assetPath {
 			get {
-				var absolute = Path.Combine(AssemblyRootDirectory, "Editor\\Settings\\");
+				var absolute = Path.Combine(AssemblyRootDirectory, "Settings\\");
 				string rel = "Assets" + absolute.Substring(Application.dataPath.Length);
 				return rel;
 			}
@@ -23,7 +34,7 @@ namespace LoneTower.Utility.SRP {
 				string g = CompilationPipeline.GetAssemblyDefinitionFilePathFromAssemblyName("LoneTower.Utility.SRP.Editor");
 				return Directory.GetParent(g).FullName;
 			}
-		} 
+		}
 
 		static string assetName = @"Settings.asset";
 
@@ -77,10 +88,10 @@ namespace LoneTower.Utility.SRP {
 		public void Load() {
 			if(!Directory.Exists(assetPath))
 				Directory.CreateDirectory(assetPath);
-			TextAsset a = AssetDatabase.LoadAssetAtPath<TextAsset>(assetPath);
-
+			TextAsset a = AssetDatabase.LoadAssetAtPath<TextAsset>(assetPath + assetName);
+			 
 			if(a == null) {
-				data = SRPData.defaultData;
+				data = SRPData.defaultData; 
 				Save();
 			} else {
 				try {

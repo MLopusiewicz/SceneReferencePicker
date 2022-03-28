@@ -2,8 +2,6 @@
     "name": "LoneTower.Utility.SRP.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:718d914f45b45d9448d51e21805b399e",
-        "GUID:5b34a38c2999c854cad4840282c17bc8",
         "GUID:bb13a6ca4e40efb40924671d6f6b1ed4"
     ],
     "includePlatforms": [
