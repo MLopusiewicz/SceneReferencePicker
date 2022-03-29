@@ -5,7 +5,8 @@
 ## Preview
 
 SRP is a inspector extension tool for easier reference picking (single/List/Array).
-Easy use with Attributes. Easy extenting with base classes.
+Easy use with Attributes. Easy extending with base classes.
+![youtube preview](https://www.youtube.com/watch?v=zu6UvRWsXJw)
 
 ![SRPPreview](images/Preview.png)
 ## Instalation
