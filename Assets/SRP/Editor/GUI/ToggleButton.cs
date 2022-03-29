@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace LoneTower.Utility.SRP {
+namespace LoneTower.SRP {
 	public abstract class ToggleButton {
 		public string name;
 		public bool state;

@@ -855,12 +855,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e47f0a3a97977f49bb7f527603bcff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  singlePick: {fileID: 314079516}
+  singlePick: {fileID: 0}
   pathPick:
     collection:
     - {fileID: 314079516}
     - {fileID: 1865125215}
-    - {fileID: 554307003}
   topDown:
     collection:
     - {fileID: 34791976}

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using static LoneTower.Utility.SRP.PickerBase;
+using static LoneTower.SRP.PickerBase;
 
-namespace LoneTower.Utility.SRP {
+namespace LoneTower.SRP {
 	public abstract class DrawerPathBase : DrawerBase {
 
 

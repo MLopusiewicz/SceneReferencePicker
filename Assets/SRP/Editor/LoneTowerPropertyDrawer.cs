@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 
-namespace LoneTower.Utility.SRP {
+namespace LoneTower.SRP {
 	public abstract class LoneTowerPropertyDrawer : PropertyDrawer {
 		protected SerializedProperty prop;
 
@@ -23,7 +23,7 @@ namespace LoneTower.Utility.SRP {
 
 		private void OnChange(PlayModeStateChange obj) {
 			//if(obj == PlayModeStateChange.ExitingEditMode || obj == PlayModeStateChange.ExitingPlayMode)
-				Reset();
+			Reset();
 		}
 
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {

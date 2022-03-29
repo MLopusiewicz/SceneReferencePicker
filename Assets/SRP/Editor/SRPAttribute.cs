@@ -2,9 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static LoneTower.Utility.SRP.PickerData;
+using static LoneTower.SRP.PickerData;
 
-namespace LoneTower.Utility.SRP {
+namespace LoneTower.SRP {
 
 	[AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = true)]
 	public class SRPAttribute : PropertyAttribute {

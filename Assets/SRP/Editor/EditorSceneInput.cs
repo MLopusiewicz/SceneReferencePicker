@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace LoneTower.Utility.SRP {
+namespace LoneTower.SRP {
 	public class EditorSceneInput {
 
 		public static EditorSceneInput Instance {
@@ -16,7 +16,7 @@ namespace LoneTower.Utility.SRP {
 		}
 		static EditorSceneInput instance;
 
-		public bool inputInterception; 
+		public bool inputInterception;
 		public bool shiftPressed { get; private set; }
 		public bool ctrlPressed { get; private set; }
 		public event Action MouseDown, MouseUp, MousePressing, ShiftDown, ShiftUp, SceneLoop;

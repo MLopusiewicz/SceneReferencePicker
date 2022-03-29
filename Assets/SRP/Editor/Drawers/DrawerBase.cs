@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace LoneTower.Utility.SRP {
+namespace LoneTower.SRP {
 	public abstract class DrawerBase {
 
 		static SelectionBank<Color> colorBank = new SelectionBank<Color>(SRPSettings.colors);

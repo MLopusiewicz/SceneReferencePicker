@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-namespace LoneTower.Utility.SRP {
+namespace LoneTower.SRP {
 	[CustomPropertyDrawer(typeof(SRPAttribute))]
 	public class SRPInspectorDrawer : SRPPropertyDrawer {
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {

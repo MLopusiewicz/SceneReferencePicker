@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace LoneTower.Utility.SRP {
+namespace LoneTower.SRP {
 	public class PickerPath : PickerBase {
 
 		bool drag;
 		int index;
-		 
+
 		public PickerPath(Type t, List<Component> list = null) : base(t, list) {
 		}
 

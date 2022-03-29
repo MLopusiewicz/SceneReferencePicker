@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace LoneTower.Utility.SRP {
+namespace LoneTower.SRP {
 	public class ParserTransform : ParserBase {
 
 		public ParserTransform(PickerBase picker) : base(picker) {

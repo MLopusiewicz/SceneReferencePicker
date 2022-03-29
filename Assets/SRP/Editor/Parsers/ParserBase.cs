@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using static LoneTower.Utility.SRP.PickerBase;
+using static LoneTower.SRP.PickerBase;
 
-namespace LoneTower.Utility.SRP {
+namespace LoneTower.SRP {
 	public abstract class ParserBase {
 		public PickerBase picker;
 		protected ParserBase(PickerBase picker) {

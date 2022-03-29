@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 
 
-namespace LoneTower.Utility.SRP {
+namespace LoneTower.SRP {
 	public abstract class SRPBasePropertyDrawer : LoneTowerPropertyDrawer {
 		protected SRPController picker;
 		State? state;

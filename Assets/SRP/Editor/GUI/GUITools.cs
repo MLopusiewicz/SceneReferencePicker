@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LoneTower.Utility.SRP {
+namespace LoneTower.SRP {
 	public static class GUITools {
 		public static Rect ColorField(Rect r, Color c) {
 			Rect t = r;

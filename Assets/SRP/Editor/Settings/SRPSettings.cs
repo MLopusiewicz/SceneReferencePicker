@@ -1,4 +1,3 @@
-using LoneTower.Utility;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +7,7 @@ using UnityEditor;
 using UnityEditor.Compilation;
 using UnityEngine;
 
-namespace LoneTower.Utility.SRP {
+namespace LoneTower.SRP {
 	public class SRPSettings {
 
 		public static SRPSettings Instance {
@@ -89,9 +88,9 @@ namespace LoneTower.Utility.SRP {
 			if(!Directory.Exists(assetPath))
 				Directory.CreateDirectory(assetPath);
 			TextAsset a = AssetDatabase.LoadAssetAtPath<TextAsset>(assetPath + assetName);
-			 
+
 			if(a == null) {
-				data = SRPData.defaultData; 
+				data = SRPData.defaultData;
 				Save();
 			} else {
 				try {

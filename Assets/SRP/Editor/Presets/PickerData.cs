@@ -1,9 +1,8 @@
-using LoneTower.Utility.SRP;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace LoneTower.Utility.SRP {
+namespace LoneTower.SRP {
 	public class PickerData {
 
 		public Type logic;
