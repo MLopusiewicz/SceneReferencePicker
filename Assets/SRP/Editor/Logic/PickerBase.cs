@@ -24,11 +24,11 @@ namespace LoneTower.SRP {
 			selection = list;
 			input = new SceneMousePicker(t);
 
-			EditorSceneInput.Instance.ShiftDown += ShiftMode;
-			EditorSceneInput.Instance.ShiftUp += NormalMode;
+			SceneInput.Instance.ShiftDown += ShiftMode;
+			SceneInput.Instance.ShiftUp += NormalMode;
 
-			EditorSceneInput.Instance.CtrlDown += CtrlMode;
-			EditorSceneInput.Instance.CtrlUp += NormalMode;
+			SceneInput.Instance.CtrlDown += CtrlMode;
+			SceneInput.Instance.CtrlUp += NormalMode;
 		}
 
 		private void CtrlMode() {

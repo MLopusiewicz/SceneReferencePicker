@@ -8,10 +8,10 @@ using UnityEditor.UIElements;
 using UnityEngine;
 
 namespace LoneTower.SRP {
-	public abstract class LoneTowerPropertyDrawer : PropertyDrawer {
+	public abstract class SRPBaseDrawer : PropertyDrawer {
 		protected SerializedProperty prop;
 
-		protected LoneTowerPropertyDrawer() {
+		protected SRPBaseDrawer() {
 			Selection.selectionChanged += Destroy;
 			EditorApplication.playModeStateChanged += OnChange;
 			Undo.undoRedoPerformed += Reset;

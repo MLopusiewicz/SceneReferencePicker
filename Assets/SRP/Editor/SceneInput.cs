@@ -5,16 +5,15 @@ using UnityEditor;
 using UnityEngine;
 
 namespace LoneTower.SRP {
-	public class EditorSceneInput {
-
-		public static EditorSceneInput Instance {
+	public class SceneInput {
+		public static SceneInput Instance {
 			get {
 				if(instance == null)
-					instance = new EditorSceneInput();
+					instance = new SceneInput();
 				return instance;
 			}
 		}
-		static EditorSceneInput instance;
+		static SceneInput instance;
 
 		public bool inputInterception;
 		public bool shiftPressed { get; private set; }
@@ -30,7 +29,7 @@ namespace LoneTower.SRP {
 		Dictionary<KeyCode, Action> keys = new Dictionary<KeyCode, Action>();
 
 
-		public EditorSceneInput() {
+		public SceneInput() {
 			SceneView.duringSceneGui += SceneFunc;
 		}
 

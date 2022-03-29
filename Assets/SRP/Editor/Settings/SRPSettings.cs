@@ -30,7 +30,7 @@ namespace LoneTower.SRP {
 		}
 		static string AssemblyRootDirectory {
 			get {
-				string g = CompilationPipeline.GetAssemblyDefinitionFilePathFromAssemblyName("LoneTower.Utility.SRP.Editor");
+				string g = CompilationPipeline.GetAssemblyDefinitionFilePathFromAssemblyName("LoneTower.SRP.Editor");
 				return Directory.GetParent(g).FullName;
 			}
 		}

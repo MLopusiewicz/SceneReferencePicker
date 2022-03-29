@@ -18,19 +18,19 @@ namespace LoneTower.SRP {
 		}
 
 		public void Enable() {
-			EditorSceneInput.Instance.inputInterception = true;
-			EditorSceneInput.Instance.MouseDown += Click;
-			EditorSceneInput.Instance.MousePressing += Pressing;
-			EditorSceneInput.Instance.MouseUp += Release;
-			EditorSceneInput.Instance.MouseLoop += Update;
+			SceneInput.Instance.inputInterception = true;
+			SceneInput.Instance.MouseDown += Click;
+			SceneInput.Instance.MousePressing += Pressing;
+			SceneInput.Instance.MouseUp += Release;
+			SceneInput.Instance.MouseLoop += Update;
 		}
 
 		public void Disable() {
-			EditorSceneInput.Instance.inputInterception = false;
-			EditorSceneInput.Instance.MouseDown -= Click;
-			EditorSceneInput.Instance.MousePressing -= Pressing;
-			EditorSceneInput.Instance.MouseUp -= Release;
-			EditorSceneInput.Instance.MouseLoop -= Update;
+			SceneInput.Instance.inputInterception = false;
+			SceneInput.Instance.MouseDown -= Click;
+			SceneInput.Instance.MousePressing -= Pressing;
+			SceneInput.Instance.MouseUp -= Release;
+			SceneInput.Instance.MouseLoop -= Update;
 		}
 
 		protected virtual Component GetRaycast() {

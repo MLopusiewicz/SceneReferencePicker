@@ -6,7 +6,7 @@ using UnityEngine;
 
 
 namespace LoneTower.SRP {
-	public abstract class SRPBasePropertyDrawer : LoneTowerPropertyDrawer {
+	public abstract class SRPBasePropertyDrawer : SRPBaseDrawer {
 		protected SRPController picker;
 		State? state;
 		protected bool isSingle;

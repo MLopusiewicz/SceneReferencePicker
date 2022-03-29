@@ -85,7 +85,6 @@ namespace LoneTower.SRP {
 
 		}
 	}
-
 	public class PaintButton : ToggleButton {
 		public PaintButton(string name = "") : base(name, "Grid.Default@2x", "Grid.Default@2x") {
 
