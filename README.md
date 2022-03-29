@@ -2,6 +2,12 @@
 
 ![SRP logo](images/Logo.png)
 
+## Preview
+
+SRP is a inspector extension tool for easier reference picking (single/List/Array).
+Easy use with Attributes. Easy extenting with base classes.
+
+![SRPPreview](images/Preview.png)
 ## Instalation
 
 use this link for PackagerManager:
