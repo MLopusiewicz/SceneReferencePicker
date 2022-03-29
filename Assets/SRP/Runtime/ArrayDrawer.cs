@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace LoneTower.Utility.SRP {
@@ -26,10 +25,6 @@ namespace LoneTower.Utility.SRP {
 		public static implicit operator ArrayDrawer<T>(T[] arr) {
 			return new ArrayDrawer<T>(arr);
 		}
-
-		public static SerializedProperty GetCollection(SerializedProperty prop) {
-			return prop.FindPropertyRelative("collection");
-		} 
 	}
 
 }

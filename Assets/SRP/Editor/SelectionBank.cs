@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 
-namespace LoneTower.Utility {
+namespace LoneTower.Utility.SRP {
 	public class SelectionBank<T> {
 
 		List<Tuple<T, bool>> picks;

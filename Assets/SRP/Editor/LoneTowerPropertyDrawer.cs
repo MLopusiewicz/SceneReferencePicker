@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 
-namespace LoneTower.Utility.Editor {
+namespace LoneTower.Utility.SRP {
 	public abstract class LoneTowerPropertyDrawer : PropertyDrawer {
 		protected SerializedProperty prop;
 

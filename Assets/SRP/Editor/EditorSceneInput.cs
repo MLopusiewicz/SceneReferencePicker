@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace LoneTower.Utility.Editor {
+namespace LoneTower.Utility.SRP {
 	public class EditorSceneInput {
 
 		public static EditorSceneInput Instance {

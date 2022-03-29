@@ -1,4 +1,3 @@
-using LoneTower.Utility.GUI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -67,7 +66,7 @@ namespace LoneTower.Utility.SRP {
 			paintButton.state = logic.enabled;
 			position = EditorGUI.PrefixLabel(position, UnityEngine.GUIUtility.GetControlID(FocusType.Passive), new GUIContent(label));
 
-			GUI.GUIUtility.ColorField(position, drawer.color);
+			GUITools.ColorField(position, drawer.color);
 			position = paintButton.PropertyDraw(position);
 			position = visibility.PropertyDraw(position);
 
