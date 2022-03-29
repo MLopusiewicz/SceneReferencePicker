@@ -20,21 +20,7 @@ namespace LoneTower.SRP {
 		static SRPSettings instance;
 
 
-		static string assetPath {
-			get {
-				var absolute = Path.Combine(AssemblyRootDirectory, "Settings\\");
-				string rel = "Assets" + absolute.Substring(Application.dataPath.Length);
-				return rel;
-			}
-
-		}
-		static string AssemblyRootDirectory {
-			get {
-				string g = CompilationPipeline.GetAssemblyDefinitionFilePathFromAssemblyName("LoneTower.SRP.Editor");
-				return Directory.GetParent(g).FullName;
-			}
-		}
-
+		static string assetPath = "Assets\\Editor Default Resources\\LoneTower\\SRP";
 		static string assetName = @"Settings.asset";
 
 		public static Color choiceColor {
@@ -118,6 +104,6 @@ namespace LoneTower.SRP {
 			this.lineScale = lineScale;
 			this.choiceSize = choiceSize;
 		}
-		public static SRPData defaultData = new SRPData(Color.black, new Color[] { Color.blue, Color.red, Color.green, Color.magenta, Color.yellow, Color.cyan, Color.black }, 1, 0.1f, 1);
+		public static SRPData defaultData = new SRPData(Color.blue, new Color[] { Color.blue, Color.red, Color.green, Color.magenta, Color.yellow, Color.cyan, Color.black }, 1, 0.1f, 0.2f);
 	}
 }
