@@ -73,7 +73,7 @@ namespace LoneTower.SRP {
 		public void Load() {
 			if(!Directory.Exists(assetPath))
 				Directory.CreateDirectory(assetPath);
-			TextAsset a = AssetDatabase.LoadAssetAtPath<TextAsset>(assetPath + assetName);
+			TextAsset a = AssetDatabase.LoadAssetAtPath<TextAsset>(assetPath + "\\" + assetName);
 
 			if(a == null) {
 				data = SRPData.defaultData;
