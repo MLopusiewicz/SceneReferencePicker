@@ -9,11 +9,12 @@ namespace LoneTower.SRP {
 	public class PickerMain : PickerBase {
 		bool subtractive;
 
-		public PickerMain(Type t, List<Component> list = null) : base(t, list) {
+		public PickerMain(ScenePickerBase t, List<SelectionContainer> list = null) : base(t, list) {
+
 		}
 
 
-		protected override void StartStroke(Component obj) {
+		protected override void StartStroke(SelectionContainer obj) {
 			if(obj == null)
 				return;
 			if(selection.Contains(obj)) {
@@ -26,10 +27,10 @@ namespace LoneTower.SRP {
 
 		}
 
-		protected override void Stroke(Component a) {
+		protected override void Stroke(SelectionContainer a) {
 			if(a == null)
 				return;
-			List<Component> modifications = new List<Component>();
+			List<SelectionContainer> modifications = new List<SelectionContainer>();
 
 			if(subtractive) {
 				selection.Remove(a);

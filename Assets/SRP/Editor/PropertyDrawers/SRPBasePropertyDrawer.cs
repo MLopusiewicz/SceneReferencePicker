@@ -30,6 +30,7 @@ namespace LoneTower.SRP {
 		}
 
 		protected abstract SRPController GetPicker();
+	
 		protected override void Reset() {
 			base.Reset();
 			if(picker != null) {
@@ -49,7 +50,8 @@ namespace LoneTower.SRP {
 			}
 		}
 
-		protected abstract Component[] Deserialize();
+		protected abstract SelectionContainer[] Deserialize();
+
 		public static bool CheckType(Type t, Type g) {
 			while(t != typeof(object)) {
 				if(t == g)

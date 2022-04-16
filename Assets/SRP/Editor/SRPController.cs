@@ -9,17 +9,16 @@ namespace LoneTower.SRP {
 
 		public PickerBase logic;
 		public DrawerBase drawer;
-
-
+		 
 		VisibilityButton visibility;
 		PaintButton paintButton;
 
-		public SRPController(PickerData data, Type t, Component[] arr = null) {
-			List<Component> c = new List<Component>();
+		public SRPController(PickerData data, SelectionContainer[] arr = null) {
+			List<SelectionContainer> c = new List<SelectionContainer>();
 			if(arr != null)
 				c.AddRange(arr);
 
-			logic = (PickerBase)Activator.CreateInstance(data.logic, new object[] { t, c });
+			logic = (PickerBase)Activator.CreateInstance(data.logic, new object[] { data.scenePicker, c });
 			drawer = (DrawerBase)Activator.CreateInstance(data.drawer);
 			ParserBase parser = (ParserBase)Activator.CreateInstance(data.parser, logic);
 			drawer.drawTarget = parser;

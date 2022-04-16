@@ -10,11 +10,13 @@ namespace LoneTower.SRP {
 		bool drag;
 		int index;
 
-		public PickerPath(Type t, List<Component> list = null) : base(t, list) {
+		public PickerPath(ScenePickerBase t, List<SelectionContainer> list = null) : base(t, list) {
+
 		}
 
-		protected override void StartStroke(Component t) {
+		protected override void StartStroke(SelectionContainer t) {
 			drag = false;
+
 			if(t == null)
 				return;
 
@@ -39,7 +41,7 @@ namespace LoneTower.SRP {
 
 		}
 
-		protected override void Stroke(Component t) {
+		protected override void Stroke(SelectionContainer t) {
 			if(t == null)
 				return;
 
@@ -58,12 +60,12 @@ namespace LoneTower.SRP {
 
 		}
 
-		void Insert(Component t, int i) {
+		void Insert(SelectionContainer t, int i) {
 			selection.Insert(i, t);
 			selection.RemoveAt(i + 1);
 		}
 
-		protected override void EndStroke(Component t) {
+		protected override void EndStroke(SelectionContainer t) {
 
 			if(drag) {
 				if(selection.Contains(t)) {

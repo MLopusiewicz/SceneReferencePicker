@@ -24,7 +24,8 @@ namespace LoneTower.SRP {
 			} else {
 				position.x += 5;
 				position.width -= 5;
-				EditorGUI.LabelField(position, picker.logic.input.t.Name);
+				if(picker.logic.input is ComponentPicker)
+					EditorGUI.LabelField(position, (picker.logic.input as ComponentPicker).t.Name);
 			}
 			EditorGUI.EndProperty();
 		}

@@ -8,12 +8,16 @@ namespace LoneTower.SRP {
 		protected override void Awake() {
 			base.Awake();
 			picker.drawer.Show();
-
 		}
+
 		protected override SRPController GetPicker() {
 			SRPAttribute a = (attribute as SRPAttribute);
-			return new SRPController(a.data, selectType, Deserialize());
+			if(CheckType(selectType, typeof(Component))) {
+				a.data.scenePicker = new ComponentPicker(selectType);
+			}
+			return new SRPController(a.data, Deserialize());
 		}
+
 		protected override void Serialize() {
 			if(isSingle) {
 				SerializeSingle();
@@ -21,7 +25,7 @@ namespace LoneTower.SRP {
 			} else
 				SerializeCollection();
 		}
-		protected override Component[] Deserialize() {
+		protected override SelectionContainer[] Deserialize() {
 			if(isSingle)
 				return DeserializeSingle();
 			else
@@ -29,20 +33,24 @@ namespace LoneTower.SRP {
 		}
 
 		protected void SerializeSingle() {
-			Undo.RecordObject(prop.serializedObject.targetObject, "[RayPicker]");
+			Undo.RecordObject(prop.serializedObject.targetObject, "[SRP]");
 			if(picker.logic.selection.Count == 0)
 				prop.objectReferenceValue = null;
-			else
-				prop.objectReferenceValue = picker.logic.selection[picker.logic.selection.Count - 1];
+			else {
+				if(picker.logic.selection[picker.logic.selection.Count - 1] == null)
+					prop.objectReferenceValue = null;
+				else
+					picker.logic.selection[picker.logic.selection.Count - 1].Serialize(prop);
+			}
 			prop.serializedObject.ApplyModifiedProperties();
 
 			picker.Clear();
 		}
 
-		protected Component[] DeserializeSingle() {
-			Component a = (Component)prop.objectReferenceValue;
+		protected SelectionContainer[] DeserializeSingle() {
+			SelectionContainer a = ComponentContainer.Get(prop);
 			if(a == null)
-				return new Component[0];
+				return new ComponentContainer[0];
 			else
 				return new[] { a };
 		}
@@ -50,23 +58,23 @@ namespace LoneTower.SRP {
 		protected void SerializeCollection() {
 			SerializedProperty collection = prop.FindPropertyRelative("collection");
 
-			Undo.RecordObject(collection.serializedObject.targetObject, "[RayPicker]");
+			Undo.RecordObject(collection.serializedObject.targetObject, "[SRP]");
 
 			if(EditorApplication.isPlayingOrWillChangePlaymode)
 				return;
 			collection.arraySize = picker.logic.selection.Count;
 			for(int i = 0; i < picker.logic.selection.Count; i++) {
 				SerializedProperty x = collection.GetArrayElementAtIndex(i);
-				x.objectReferenceValue = picker.logic.selection[i];
+				picker.logic.selection[i].Serialize(x);
 			}
 			collection.serializedObject.ApplyModifiedProperties();
 
 		}
-		protected Component[] DeserializeCollection() {
+		protected SelectionContainer[] DeserializeCollection() {
 			SerializedProperty collection = prop.FindPropertyRelative("collection");
-			Component[] coll = new Component[collection.arraySize];
+			SelectionContainer[] coll = new SelectionContainer[collection.arraySize];
 			for(int i = 0; i < collection.arraySize; i++) {
-				Component a = (Component)collection.GetArrayElementAtIndex(i).objectReferenceValue;
+				SelectionContainer a = ComponentContainer.Get(collection.GetArrayElementAtIndex(i));
 				coll[i] = a;
 			}
 			return coll;

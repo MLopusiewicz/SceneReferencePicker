@@ -8,7 +8,7 @@ namespace LoneTower.SRP {
 		public Type logic;
 		public Type parser;
 		public Type drawer;
-
+		public ScenePickerBase scenePicker;
 		public static PickerData defaultPicker = new PickerData(typeof(PickerMain), typeof(ParserTransform), typeof(DrawerGeneric));
 
 		public PickerData(Type logic, Type parser, Type drawer) {
@@ -21,7 +21,7 @@ namespace LoneTower.SRP {
 			if(CheckType(current, expected)) {
 				return current;
 			} else {
-				Debug.LogWarning($"[PICKER] Wrong type {current}. Expected {expected}. Falling back to: {fallBack}");
+				Debug.LogWarning($"[SRP] Wrong type {current}. Expected {expected}. Falling back to: {fallBack}");
 				return fallBack;
 			}
 		}

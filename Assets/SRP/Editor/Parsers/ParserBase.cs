@@ -37,13 +37,13 @@ namespace LoneTower.SRP {
 					return new Vector3[0];
 				Vector3[] v = new Vector3[picker.input.possible.Length];
 				for(int i = 0; i < picker.input.possible.Length; i++) {
-					v[i] = GetPos(picker.input.possible[i].transform);
+					v[i] = GetPos(picker.input.possible[i]);
 				}
 				return v;
 			}
 		}
 
-		protected abstract Vector3 GetPos(Component t);
+		protected abstract Vector3 GetPos(SelectionContainer t);
 	}
 
 }

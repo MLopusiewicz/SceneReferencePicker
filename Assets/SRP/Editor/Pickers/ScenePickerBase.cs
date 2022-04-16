@@ -1,3 +1,4 @@
+using LoneTower.SRP;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,16 +7,11 @@ using UnityEditor;
 using UnityEngine;
 
 namespace LoneTower.SRP {
-	public class SceneMousePicker {
+	public abstract class ScenePickerBase {
 
-		public Action<Component> OnPressed, OnDrag, OnRelease, OnCurrentChange;
-		public Component current;
-		public Type t { get; private set; }
-		public GameObject[] possible;
-		public SceneMousePicker(Type t) {
-			this.t = t;
-			possible = GameObject.FindObjectsOfType(t).Select(x => ((Component)x).gameObject).ToArray();
-		}
+		public Action<SelectionContainer> OnPressed, OnDrag, OnRelease, OnCurrentChange;
+		public SelectionContainer current;
+		public SelectionContainer[] possible;
 
 		public void Enable() {
 			SceneInput.Instance.inputInterception = true;
@@ -33,19 +29,7 @@ namespace LoneTower.SRP {
 			SceneInput.Instance.MouseLoop -= Update;
 		}
 
-		protected virtual Component GetRaycast() {
-			if(SceneView.mouseOverWindow == null)
-				return null;
-			if(SceneView.mouseOverWindow.ToString() == " (UnityEditor.SceneView)") {
-				GameObject go = HandleUtility.PickGameObject(Event.current.mousePosition, false);
-				if(go != null) {
-					return go.GetComponentInParent(t);
-				}
-			}
-
-
-			return null;
-		}
+		protected abstract SelectionContainer GetRaycast();
 
 		private void Click() {
 			OnPressed?.Invoke(GetRaycast());
@@ -60,17 +44,14 @@ namespace LoneTower.SRP {
 		}
 
 		private void Update() {
-
-			Component v = GetRaycast();
+			SelectionContainer v = GetRaycast();
 			if(v != current) {
 				OnCurrentChange?.Invoke(v);
 				current = v;
 			}
 		}
 
-
-
-		~SceneMousePicker() {
+		~ScenePickerBase() {
 			Disable();
 		}
 	}
