@@ -12,7 +12,7 @@ namespace LoneTower.SRP {
 		public PickerData data;
 		public SRPAttribute() {
 			this.data = PickerData.defaultPicker;
-		} 
+		}
 		public SRPAttribute(Type t) {
 			if(CheckType(t, typeof(PickerData))) {
 				data = (PickerData)Activator.CreateInstance(t);
@@ -21,8 +21,8 @@ namespace LoneTower.SRP {
 				data = defaultPicker;
 			}
 		}
-		public SRPAttribute(Type logic, Type drawer, Type parser, Type scenePicker) {
-			data = new PickerData(logic, parser, drawer, scenePicker);
+		public SRPAttribute(Type logic, Type drawer, Type parser, Type scenePicker, Type serializer) {
+			data = new PickerData(logic, parser, drawer, scenePicker, serializer);
 		}
 
 	}

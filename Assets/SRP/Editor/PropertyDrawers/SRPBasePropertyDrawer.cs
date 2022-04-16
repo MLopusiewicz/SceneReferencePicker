@@ -9,6 +9,7 @@ namespace LoneTower.SRP {
 	public abstract class SRPBasePropertyDrawer : SRPBaseDrawer {
 
 		protected SRPController picker;
+		SerializerBase serializer;
 		State? state;
 		protected bool isSingle;
 		protected Type selectType;
@@ -31,13 +32,14 @@ namespace LoneTower.SRP {
 
 			picker.drawer.Show();
 		}
-		 
+
 		protected SRPController GetPicker() {
 			SRPAttribute a = (attribute as SRPAttribute);
 			a.data.selectType = selectType;
+			serializer = (SerializerBase)Activator.CreateInstance(a.data.serializer);
 			return new SRPController(a.data, Deserialize());
 		}
-		 
+
 		protected override void Reset() {
 			base.Reset();
 			if(picker != null) {
@@ -51,21 +53,21 @@ namespace LoneTower.SRP {
 		protected void Serialize() {
 			if(isSingle) {
 				if(picker.logic.selection.Count > 0)
-					SRPSerializer.Serialize(picker.logic.selection[picker.logic.selection.Count - 1], prop);
+					serializer.Serialize(picker.logic.selection[picker.logic.selection.Count - 1], prop);
 				else
-					SRPSerializer.Serialize(null, prop);
+					serializer.Serialize(null, prop);
 				picker.Clear();
 				Reset();
 			} else {
-				SRPSerializer.SerializeArray(picker.logic.selection.ToArray(), prop.FindPropertyRelative("collection"));
+				serializer.SerializeArray(picker.logic.selection.ToArray(), prop.FindPropertyRelative("collection"));
 			}
 		}
 
 		protected object[] Deserialize() {
 			if(isSingle)
-				return SRPSerializer.Deserialize(typeof(Component), prop);
+				return serializer.Deserialize(typeof(Component), prop);
 			else
-				return SRPSerializer.Deserialize(typeof(Component[]), prop);
+				return serializer.Deserialize(typeof(Component[]), prop);
 		}
 
 		protected override void OnDestroy() {

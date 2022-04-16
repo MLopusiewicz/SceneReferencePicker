@@ -10,15 +10,16 @@ namespace LoneTower.SRP {
 		public Type drawer;
 		public Type sceneInput;
 		public Type selectType;
+		public Type serializer;
 
+		public static PickerData defaultPicker = new PickerData(typeof(PickerMain), typeof(ParserTransform), typeof(DrawerGeneric), typeof(ComponentPicker), typeof(ComponentSerializer));
 
-		public static PickerData defaultPicker = new PickerData(typeof(PickerMain), typeof(ParserTransform), typeof(DrawerGeneric), typeof(ComponentPicker));
-
-		public PickerData(Type logic, Type parser, Type drawer, Type picker) {
+		public PickerData(Type logic, Type parser, Type drawer, Type picker, Type serializer) {
 			this.logic = TryType(logic, typeof(PickerBase), typeof(PickerMain));
 			this.parser = TryType(parser, typeof(ParserBase), typeof(ParserTransform));
 			this.drawer = TryType(drawer, typeof(DrawerBase), typeof(DrawerGeneric));
 			this.sceneInput = TryType(picker, typeof(ScenePickerBase), typeof(ComponentPicker));
+			this.serializer = TryType(serializer, typeof(SerializerBase), typeof(ComponentSerializer));
 		}
 
 		Type TryType(Type current, Type expected, Type fallBack) {
@@ -45,20 +46,20 @@ namespace LoneTower.SRP {
 
 
 	public class PathPicker : PickerData {
-		public PathPicker() : base(typeof(PickerPath), typeof(ParserTransform), typeof(DrawerPath), typeof(ComponentPicker)) {
+		public PathPicker() : base(typeof(PickerPath), typeof(ParserTransform), typeof(DrawerPath), typeof(ComponentPicker), typeof(ComponentSerializer)) {
 		}
 	}
 	public class SinglePicker : PickerData {
-		public SinglePicker() : base(typeof(PickerSingle), typeof(ParserTransform), typeof(DrawerGeneric), typeof(ComponentPicker)) { }
+		public SinglePicker() : base(typeof(PickerSingle), typeof(ParserTransform), typeof(DrawerGeneric), typeof(ComponentPicker), typeof(ComponentSerializer)) { }
 	}
 	public class TopDownPicker : PickerData {
-		public TopDownPicker() : base(typeof(PickerMain), typeof(ParserTransform), typeof(DrawerTopDown), typeof(ComponentPicker)) { }
+		public TopDownPicker() : base(typeof(PickerMain), typeof(ParserTransform), typeof(DrawerTopDown), typeof(ComponentPicker), typeof(ComponentSerializer)) { }
 	}
 	public class TopDownSinglePicker : PickerData {
-		public TopDownSinglePicker() : base(typeof(PickerSingle), typeof(ParserTransform), typeof(DrawerTopDown), typeof(ComponentPicker)) { }
+		public TopDownSinglePicker() : base(typeof(PickerSingle), typeof(ParserTransform), typeof(DrawerTopDown), typeof(ComponentPicker), typeof(ComponentSerializer)) { }
 	}
 	public class DefaultPicker : PickerData {
-		public DefaultPicker() : base(typeof(PickerMain), typeof(ParserTransform), typeof(DrawerGeneric), typeof(ComponentPicker)) { }
+		public DefaultPicker() : base(typeof(PickerMain), typeof(ParserTransform), typeof(DrawerGeneric), typeof(ComponentPicker), typeof(ComponentSerializer)) { }
 	}
 
 }

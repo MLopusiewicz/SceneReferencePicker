@@ -857,10 +857,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   singlePick: {fileID: 1865125215}
   pathPick:
-    collection: []
+    collection:
+    - {fileID: 314079516}
+    - {fileID: 806303367}
+    - {fileID: 34791974}
   topDown:
-    collection: []
-  topDownSingle: {fileID: 0}
+    collection:
+    - {fileID: 34791976}
+    - {fileID: 314079518}
+    - {fileID: 499331517}
+  topDownSingle: {fileID: 1185964270}
 --- !u!4 &1095029104
 Transform:
   m_ObjectHideFlags: 0
