@@ -14,29 +14,32 @@ namespace LoneTower.SRP {
 		}
 
 
-		protected override void StartStroke(object obj) {
-			if(obj == null)
-				return;
-			if(selection.Contains(obj)) {
+		protected override void StartStroke(object[] t) {
+			if(mode == brushMode.shift) {
 				subtractive = true;
-				selection.Remove(obj);
-			} else {
-				subtractive = false;
-				selection.Add(obj);
-			}
+				foreach(var a in t) {
+					selection.Remove(a);
+				}
+			} else
+				foreach(var a in t) {
+					subtractive = false;
+					if(!selection.Contains(a))
+						selection.Add(a);
+				}
 
 		}
 
-		protected override void Stroke(object a) {
-			if(a == null)
-				return;
-			List<object> modifications = new List<object>();
+		protected override void Stroke(object[] a) {
 
 			if(subtractive) {
-				selection.Remove(a);
-			} else if(!selection.Contains(a))
-				selection.Add(a);
-		}
-
+				foreach(var t in a) {
+					selection.Remove(t);
+				}
+			} else
+				foreach(var t in a) {
+					if(!selection.Contains(t))
+						selection.Add(t);
+				}
+		} 
 	}
 }

@@ -53,14 +53,14 @@ namespace LoneTower.SRP {
 			Handles.color = color;
 			DrawSelection(drawTarget.Selection);
 			if(drawTarget.IsHovering) {
-				DrawHandle(drawTarget.Hover, drawTarget.IsHoverSelected);
+				DrawHandle(drawTarget.Hover);
 			} else {
 				DrawHandle();
 			}
 		}
 
 		protected abstract void DrawEmptyHandle(Ray mouseRay);
-		protected abstract void DrawHandle(Vector3 hover, bool contained);
+		protected abstract void DrawHandle(Vector3[] hover);
 		protected abstract void DrawSelection(Vector3[] selection);
 		protected virtual void DrawChoices(Vector3[] choices) {
 			foreach(Vector3 a in choices) {

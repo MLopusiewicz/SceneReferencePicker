@@ -18,7 +18,7 @@ namespace LoneTower.SRP {
 			possible = s.ToArray();
 		}
 
-		protected override object GetRaycast() {
+		protected override object[] GetRaycast() {
 			if(SceneView.mouseOverWindow == null)
 				return null;
 			if(SceneView.mouseOverWindow.ToString() == " (UnityEditor.SceneView)") {
@@ -26,7 +26,7 @@ namespace LoneTower.SRP {
 				if(go != null) {
 					Component cc = go.GetComponentInParent(t);
 					if(cc != null)
-						return cc;
+						return new object[] { cc };
 				}
 			}
 

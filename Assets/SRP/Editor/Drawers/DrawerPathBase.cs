@@ -8,7 +8,7 @@ namespace LoneTower.SRP {
 	public abstract class DrawerPathBase : DrawerBase {
 
 
-		protected override void DrawHandle(Vector3 hover, bool contained) {
+		protected override void DrawHandle(Vector3[] hover) {
 			switch(drawTarget.mode) {
 				case brushMode.ctrl:
 					Handles.color = Color.green;
@@ -20,6 +20,7 @@ namespace LoneTower.SRP {
 					Handles.color = Color.white;
 					break;
 			}
+
 		}
 
 		protected override void DrawSelection(Vector3[] selection) {
@@ -32,8 +33,11 @@ namespace LoneTower.SRP {
 				Handles.color = color;
 				if(drawTarget.mode == brushMode.ctrl) {
 					if(drawTarget.IsHovering)
-						if(selection[i] == drawTarget.Hover) {
-							Handles.DrawLine(selection[i], selection[i - 1], 4 * SRPSettings.LineScale);
+						foreach(var a in drawTarget.Hover) {
+							if(selection[i] == a) {
+								Handles.DrawLine(selection[i], selection[i - 1], 4 * SRPSettings.LineScale);
+								break;
+							}
 						}
 				}
 				Handles.DrawLine(selection[i], selection[i - 1], SRPSettings.LineScale);

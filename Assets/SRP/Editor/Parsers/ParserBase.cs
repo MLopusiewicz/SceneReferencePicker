@@ -14,10 +14,6 @@ namespace LoneTower.SRP {
 
 		public bool IsHovering { get { return picker.hover != null; } }
 
-		public bool IsHoverSelected {
-			get { return picker.selection.Contains(picker.hover); }
-		}
-
 		public brushMode mode { get { return picker.mode; } }
 
 		public Vector3[] Selection {
@@ -29,7 +25,15 @@ namespace LoneTower.SRP {
 				return v;
 			}
 		}
-		public Vector3 Hover { get { return GetPos(picker.hover); } }
+		public Vector3[] Hover {
+			get {
+				Vector3[] pos = new Vector3[picker.hover.Length];
+				for(int i = 0; i < picker.hover.Length; i++) {
+					pos[i] = GetPos(picker.hover[i]);
+				}
+				return pos;
+			}
+		}
 
 		public Vector3[] Choices {
 			get {

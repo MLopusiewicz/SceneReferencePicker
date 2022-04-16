@@ -10,9 +10,10 @@ namespace LoneTower.SRP {
 
 		}
 
-		protected override void DrawHandle(Vector3 hover, bool contained) {
-			base.DrawHandle(hover, contained);
-			Handles.DrawWireDisc(hover, Vector3.up, 0.2f * SRPSettings.Scale, 3f * SRPSettings.LineScale);
+		protected override void DrawHandle(Vector3[] hover) {
+			base.DrawHandle(hover);
+			foreach(var a in hover)
+				Handles.DrawWireDisc(a, Vector3.up, 0.2f * SRPSettings.Scale, 3f * SRPSettings.LineScale);
 		}
 
 		protected override void DrawSelection(Vector3[] selection) {

@@ -12,14 +12,22 @@ namespace LoneTower.SRP {
 		}
 
 
-		protected override void StartStroke(object obj) {
+		protected override void StartStroke(object[] obj) {
 
 		}
 
-		protected override void Stroke(object t) {
+		protected override void Stroke(object[] t) {
 
 		}
-		protected override void EndStroke(object t) {
+		protected override void EndStroke(object[] a) {
+			if(a == null)
+				return;
+
+			object t = a[0];
+
+			if(t == null)
+				return;
+
 			if(selection.Contains(t)) {
 				selection.Clear();
 				Disable();
@@ -28,7 +36,7 @@ namespace LoneTower.SRP {
 				selection.Clear();
 				selection.Add(t);
 				Disable();
-				base.EndStroke(t);
+				base.EndStroke(new object[] { t });
 			}
 		}
 	}

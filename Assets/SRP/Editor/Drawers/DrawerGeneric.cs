@@ -10,13 +10,14 @@ namespace LoneTower.SRP {
 		protected override void DrawEmptyHandle(Ray r) {
 		}
 
-		protected override void DrawHandle(Vector3 hover, bool contained) {
-			if(contained)
+		protected override void DrawHandle(Vector3[] hover) {
+			if(drawTarget.picker.mode == PickerBase.brushMode.shift)
 				Handles.color = Color.red;
 			else
 				Handles.color = Color.white;
-
-			Handles.DrawWireDisc(hover, GetCameraDirection(hover), 0.3f * SRPSettings.Scale, 3f * SRPSettings.LineScale);
+			foreach(var a in hover) {
+				Handles.DrawWireDisc(a, GetCameraDirection(a), 0.3f * SRPSettings.Scale, 3f * SRPSettings.LineScale);
+			}
 		}
 
 		protected override void DrawSelection(Vector3[] Selection) {

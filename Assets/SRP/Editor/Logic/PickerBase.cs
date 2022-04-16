@@ -10,7 +10,7 @@ namespace LoneTower.SRP {
 		public event Action OnStrokeEnd;
 		public enum brushMode { normal, shift, ctrl }
 		public brushMode mode;
-		public object hover { get; private set; }
+		public object[] hover { get; private set; }
 
 		public bool enabled { get; private set; }
 
@@ -43,13 +43,13 @@ namespace LoneTower.SRP {
 			mode = brushMode.normal;
 		}
 
-		protected abstract void StartStroke(object t);
-		protected abstract void Stroke(object t);
-		protected virtual void EndStroke(object t) {
+		protected abstract void StartStroke(object[] t);
+		protected abstract void Stroke(object[] t);
+		protected virtual void EndStroke(object[] t) {
 			OnStrokeEnd?.Invoke();
 		}
 
-		private void Follow(object obj) {
+		private void Follow(object[] obj) {	
 			hover = obj;
 		}
 
