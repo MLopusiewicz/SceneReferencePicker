@@ -10,17 +10,17 @@ namespace LoneTower.SRP {
 		public event Action OnStrokeEnd;
 		public enum brushMode { normal, shift, ctrl }
 		public brushMode mode;
-		public SelectionContainer hover { get; private set; }
+		public object hover { get; private set; }
 
 		public bool enabled { get; private set; }
 
-		public List<SelectionContainer> selection;
+		public List<object> selection;
 
 		public ScenePickerBase input;
 
-		public PickerBase(ScenePickerBase input, List<SelectionContainer> list = null) {
+		public PickerBase(ScenePickerBase input, List<object> list = null) {
 			if(list == null)
-				selection = new List<SelectionContainer>();
+				selection = new List<object>();
 			selection = list;
 			this.input = input;
 
@@ -43,13 +43,13 @@ namespace LoneTower.SRP {
 			mode = brushMode.normal;
 		}
 
-		protected abstract void StartStroke(SelectionContainer t);
-		protected abstract void Stroke(SelectionContainer t);
-		protected virtual void EndStroke(SelectionContainer t) {
+		protected abstract void StartStroke(object t);
+		protected abstract void Stroke(object t);
+		protected virtual void EndStroke(object t) {
 			OnStrokeEnd?.Invoke();
 		}
 
-		private void Follow(SelectionContainer obj) {
+		private void Follow(object obj) {
 			hover = obj;
 		}
 

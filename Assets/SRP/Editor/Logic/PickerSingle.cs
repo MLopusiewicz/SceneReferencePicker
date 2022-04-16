@@ -7,19 +7,19 @@ namespace LoneTower.SRP {
 
 	public class PickerSingle : PickerBase {
 
-		public PickerSingle(ScenePickerBase t, List<SelectionContainer> list = null) : base(t, list) {
+		public PickerSingle(ScenePickerBase t, List<object> list = null) : base(t, list) {
 
 		}
 
 
-		protected override void StartStroke(SelectionContainer obj) {
+		protected override void StartStroke(object obj) {
 
 		}
 
-		protected override void Stroke(SelectionContainer t) {
+		protected override void Stroke(object t) {
 
 		}
-		protected override void EndStroke(SelectionContainer t) {
+		protected override void EndStroke(object t) {
 			if(selection.Contains(t)) {
 				selection.Clear();
 				Disable();

@@ -9,12 +9,12 @@ namespace LoneTower.SRP {
 
 		public PickerBase logic;
 		public DrawerBase drawer;
-		 
+
 		VisibilityButton visibility;
 		PaintButton paintButton;
 
-		public SRPController(PickerData data, SelectionContainer[] arr = null) {
-			List<SelectionContainer> c = new List<SelectionContainer>();
+		public SRPController(PickerData data, object[] arr = null) {
+			List<object> c = new List<object>();
 			if(arr != null)
 				c.AddRange(arr);
 
@@ -37,7 +37,7 @@ namespace LoneTower.SRP {
 			drawer.Hide();
 
 		}
-
+		 
 		void VisibilityOn() {
 			drawer.Hide();
 			logic.Disable();

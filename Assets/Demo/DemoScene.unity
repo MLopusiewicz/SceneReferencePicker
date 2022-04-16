@@ -855,15 +855,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7599f95b0324d788b0b836c30aa83f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  singlePick: {fileID: 0}
+  singlePick: {fileID: 1865125215}
   pathPick:
-    collection:
-    - {fileID: 314079516}
-    - {fileID: 554307003}
-    - {fileID: 34791974}
+    collection: []
   topDown:
     collection: []
-  topDownSingle: {fileID: 1185964270}
+  topDownSingle: {fileID: 0}
 --- !u!4 &1095029104
 Transform:
   m_ObjectHideFlags: 0
@@ -872,7 +869,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1095029102}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5619268, y: -0.9119482, z: 0.93567824}
+  m_LocalPosition: {x: -6.01, y: -0.9119482, z: 0.93567824}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -43,7 +43,7 @@ namespace LoneTower.SRP {
 			}
 		}
 
-		protected abstract Vector3 GetPos(SelectionContainer t);
+		protected abstract Vector3 GetPos(object t);
 	}
 
 }

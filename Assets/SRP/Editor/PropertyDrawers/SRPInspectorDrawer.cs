@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 namespace LoneTower.SRP {
 	[CustomPropertyDrawer(typeof(SRPAttribute))]
-	public class SRPInspectorDrawer : SRPPropertyDrawer {
+	public class SRPInspectorDrawer : SRPBasePropertyDrawer {
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
 			base.OnGUI(position, property, label);
 			EditorGUI.BeginProperty(position, label, property);

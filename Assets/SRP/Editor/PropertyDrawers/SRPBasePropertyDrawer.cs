@@ -7,30 +7,41 @@ using UnityEngine;
 
 namespace LoneTower.SRP {
 	public abstract class SRPBasePropertyDrawer : SRPBaseDrawer {
+
 		protected SRPController picker;
 		State? state;
 		protected bool isSingle;
 		protected Type selectType;
 		protected override void Awake() {
-			if(CheckType(fieldInfo.FieldType, typeof(Component))) {
-				isSingle = true;
-				selectType = fieldInfo.FieldType;
-			} else {
+			if(fieldInfo.FieldType.IsGenericType) {
 				if(fieldInfo.FieldType.GetGenericTypeDefinition() == typeof(ArrayDrawer<>) || fieldInfo.FieldType.GetGenericTypeDefinition() == typeof(ListDrawer<>)) {
 					isSingle = false;
 					selectType = fieldInfo.FieldType.GenericTypeArguments[0];
-				} else
-					Debug.LogError($"[SRP] Type not supported by attribute: {typeof(SRPAttribute)}");
+				}
+			} else {
+
+				selectType = fieldInfo.FieldType;
+				isSingle = true;
 			}
+
 			picker = GetPicker();
 			picker.logic.OnStrokeEnd += Serialize;
 			if(state != null)
 				picker.State = state.Value;
 
+			picker.drawer.Show();
 		}
 
-		protected abstract SRPController GetPicker();
-	
+
+		protected SRPController GetPicker() {
+			SRPAttribute a = (attribute as SRPAttribute);
+			if(CheckType(selectType, typeof(Component))) {
+				a.data.scenePicker = new ComponentPicker(selectType);
+			}
+			return new SRPController(a.data, Deserialize());
+		}
+
+
 		protected override void Reset() {
 			base.Reset();
 			if(picker != null) {
@@ -41,7 +52,25 @@ namespace LoneTower.SRP {
 			prop = null; //forces awake
 		}
 
-		protected abstract void Serialize();
+		protected void Serialize() {
+			if(isSingle) {
+				if(picker.logic.selection.Count > 0)
+					SRPSerializer.Serialize(picker.logic.selection[picker.logic.selection.Count - 1], prop);
+				else
+					SRPSerializer.Serialize(null, prop);
+				picker.Clear();
+				Reset();
+			} else {
+				SRPSerializer.SerializeArray(picker.logic.selection.ToArray(), prop.FindPropertyRelative("collection"));
+			}
+		}
+
+		protected object[] Deserialize() {
+			if(isSingle)
+				return SRPSerializer.Deserialize(typeof(Component), prop);
+			else
+				return SRPSerializer.Deserialize(typeof(Component[]), prop);
+		}
 
 		protected override void OnDestroy() {
 			if(picker != null) {
@@ -49,8 +78,6 @@ namespace LoneTower.SRP {
 				picker = null;
 			}
 		}
-
-		protected abstract SelectionContainer[] Deserialize();
 
 		public static bool CheckType(Type t, Type g) {
 			while(t != typeof(object)) {
@@ -61,7 +88,6 @@ namespace LoneTower.SRP {
 			return false;
 
 		}
-
 
 	}
 }

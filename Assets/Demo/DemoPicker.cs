@@ -16,9 +16,8 @@ public class DemoPicker : MonoBehaviour {
 
 	[SRP(typeof(TopDownSinglePicker))]
 	public MeshRenderer topDownSingle;
-
-}
-
+	 
+} 
 
 
 

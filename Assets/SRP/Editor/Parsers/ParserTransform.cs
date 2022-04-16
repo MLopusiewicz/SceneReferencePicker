@@ -9,11 +9,11 @@ namespace LoneTower.SRP {
 		public ParserTransform(PickerBase picker) : base(picker) {
 		}
 
-		protected override Vector3 GetPos(SelectionContainer t) {
-			if(!(t is ComponentContainer)) {
-				throw new System.Exception($"[SRP] Wrong DTO. Expected {typeof(ComponentContainer)} was:  {t.GetType().Name} ");
+		protected override Vector3 GetPos(object t) {
+			if(!(t is Component)) {
+				throw new System.Exception($"[SRP] Wrong DTO. Expected {typeof(Component)} was:  {t.GetType().Name} ");
 			}
-			return (t.obj as Component).transform.position;
+			return (t as Component).transform.position;
 		}
 	}
 }

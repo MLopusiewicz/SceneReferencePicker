@@ -22,7 +22,7 @@ namespace LoneTower.SRP {
 			}
 		}
 		public SRPAttribute(Type logic, Type drawer, Type parser) {
-			
+
 			data = new PickerData(logic, parser, drawer);
 		}
 

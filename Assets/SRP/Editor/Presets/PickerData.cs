@@ -37,7 +37,7 @@ namespace LoneTower.SRP {
 			return false;
 
 		}
-
+		 
 	}
 
 

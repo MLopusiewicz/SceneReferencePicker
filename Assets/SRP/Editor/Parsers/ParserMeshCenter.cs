@@ -9,12 +9,12 @@ namespace LoneTower.SRP {
 		public ParserMeshCenter(PickerBase picker) : base(picker) {
 		}
 
-		protected override Vector3 GetPos(SelectionContainer t) {
-			if(!(t.obj is Component)) {
-				throw new System.Exception($"[SRP] Wrong DTO. Expected {typeof(Component)} was:  {t.obj.GetType().Name} ");
+		protected override Vector3 GetPos(object t) {
+			if(!(t is Component)) {
+				throw new System.Exception($"[SRP] Wrong DTO. Expected {typeof(Component)} was:  {t.GetType().Name} ");
 			}
 
-			Component c = (Component)t.obj;
+			Component c = (Component)t;
 			var m = c.GetComponent<MeshFilter>();
 			if(m == null) {
 				Debug.LogError($"MeshFilter not found on: {c.gameObject.name} Falling back to: Transform");

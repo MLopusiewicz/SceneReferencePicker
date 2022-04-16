@@ -11,16 +11,17 @@ namespace LoneTower.SRP {
 		public ComponentPicker(Type t) {
 			this.t = t;
 			Transform[] g = GameObject.FindObjectsOfType(t).Select(x => ((Component)x).transform).ToArray();
-			List<SelectionContainer> s = new List<SelectionContainer>();
+			List<object> s = new List<object>();
 
-			foreach(Transform a in g) {
-				s.Add(new ComponentContainer(a));
-			}
+			s.AddRange(g);
+			//foreach(Transform a in g) {
+			//	s.Add(a);
+			//}
 
 			possible = s.ToArray();
 		}
 
-		protected override SelectionContainer GetRaycast() {
+		protected override object GetRaycast() {
 			if(SceneView.mouseOverWindow == null)
 				return null;
 			if(SceneView.mouseOverWindow.ToString() == " (UnityEditor.SceneView)") {
@@ -28,7 +29,7 @@ namespace LoneTower.SRP {
 				if(go != null) {
 					Component cc = go.GetComponentInParent(t);
 					if(cc != null)
-						return new ComponentContainer(cc);
+						return cc;
 				}
 			}
 

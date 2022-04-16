@@ -22,7 +22,6 @@ namespace LoneTower.SRP {
 		}
 
 		private void OnChange(PlayModeStateChange obj) {
-			//if(obj == PlayModeStateChange.ExitingEditMode || obj == PlayModeStateChange.ExitingPlayMode)
 			Reset();
 		}
 
@@ -43,6 +42,7 @@ namespace LoneTower.SRP {
 
 		protected abstract void Awake();
 		protected abstract void OnDestroy();
+		
 		protected T GetAttribute<T>(SerializedProperty property) where T : Attribute, new() {
 			Type objType = prop.serializedObject.targetObject.GetType();
 			MemberInfo[] myMembers = objType.GetMembers();
