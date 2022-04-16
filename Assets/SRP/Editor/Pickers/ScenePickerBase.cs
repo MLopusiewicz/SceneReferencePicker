@@ -12,7 +12,9 @@ namespace LoneTower.SRP {
 		public Action<object> OnPressed, OnDrag, OnRelease, OnCurrentChange;
 		public object current;
 		public object[] possible;
+		public ScenePickerBase(Type t) {
 
+		}
 		public void Enable() {
 			SceneInput.Instance.inputInterception = true;
 			SceneInput.Instance.MouseDown += Click;
@@ -50,6 +52,7 @@ namespace LoneTower.SRP {
 				current = v;
 			}
 		}
+
 
 		~ScenePickerBase() {
 			Disable();

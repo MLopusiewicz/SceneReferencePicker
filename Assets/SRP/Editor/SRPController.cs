@@ -17,8 +17,8 @@ namespace LoneTower.SRP {
 			List<object> c = new List<object>();
 			if(arr != null)
 				c.AddRange(arr);
-
-			logic = (PickerBase)Activator.CreateInstance(data.logic, new object[] { data.scenePicker, c });
+			ScenePickerBase pi = (ScenePickerBase)Activator.CreateInstance(data.sceneInput, new object[] { data.selectType });
+			logic = (PickerBase)Activator.CreateInstance(data.logic, new object[] { pi, c });
 			drawer = (DrawerBase)Activator.CreateInstance(data.drawer);
 			ParserBase parser = (ParserBase)Activator.CreateInstance(data.parser, logic);
 			drawer.drawTarget = parser;
@@ -34,10 +34,9 @@ namespace LoneTower.SRP {
 			paintButton.OnDisable += PaintOff;
 
 			logic.Disable();
-			drawer.Hide();
-
+			drawer.Hide(); 
 		}
-		 
+
 		void VisibilityOn() {
 			drawer.Hide();
 			logic.Disable();

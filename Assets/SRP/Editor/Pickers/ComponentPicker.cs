@@ -8,15 +8,12 @@ using UnityEngine;
 namespace LoneTower.SRP {
 	public class ComponentPicker : ScenePickerBase {
 		public Type t { get; private set; }
-		public ComponentPicker(Type t) {
+		public ComponentPicker(Type t) : base(t) {
 			this.t = t;
 			Transform[] g = GameObject.FindObjectsOfType(t).Select(x => ((Component)x).transform).ToArray();
 			List<object> s = new List<object>();
 
 			s.AddRange(g);
-			//foreach(Transform a in g) {
-			//	s.Add(a);
-			//}
 
 			possible = s.ToArray();
 		}

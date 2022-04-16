@@ -31,17 +31,13 @@ namespace LoneTower.SRP {
 
 			picker.drawer.Show();
 		}
-
-
+		 
 		protected SRPController GetPicker() {
 			SRPAttribute a = (attribute as SRPAttribute);
-			if(CheckType(selectType, typeof(Component))) {
-				a.data.scenePicker = new ComponentPicker(selectType);
-			}
+			a.data.selectType = selectType;
 			return new SRPController(a.data, Deserialize());
 		}
-
-
+		 
 		protected override void Reset() {
 			base.Reset();
 			if(picker != null) {
