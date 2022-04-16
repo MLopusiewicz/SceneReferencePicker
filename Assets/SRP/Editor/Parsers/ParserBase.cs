@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using static LoneTower.SRP.PickerBase;
+using static LoneTower.SRP.LogicBase;
 
 namespace LoneTower.SRP {
 	public abstract class ParserBase {
-		public PickerBase picker;
-		protected ParserBase(PickerBase picker) {
+		public LogicBase picker;
+		protected ParserBase(LogicBase picker) {
 			this.picker = picker;
 		}
 

@@ -10,7 +10,8 @@ namespace LoneTower.SRP {
 
 		public abstract void SerializeArray(object[] o, SerializedProperty prop);
 
-		public abstract object[] Deserialize(Type t, SerializedProperty prop);
-		 
+		public abstract object[] Deserialize(SerializedProperty prop);
+
+		public abstract object[] DeserializeArray(SerializedProperty prop);
 	}
 }

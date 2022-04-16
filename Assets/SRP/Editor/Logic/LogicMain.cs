@@ -6,15 +6,18 @@ using UnityEditor;
 using UnityEngine;
 
 namespace LoneTower.SRP {
-	public class PickerMain : PickerBase {
+	public class LogicMain : LogicBase {
 		bool subtractive;
 
-		public PickerMain(ScenePickerBase t, List<object> list = null) : base(t, list) {
+		public LogicMain(ScenePickerBase t, List<object> list = null) : base(t, list) {
 
 		}
 
 
 		protected override void StartStroke(object[] t) {
+			if(t == null)
+				return;
+
 			if(mode == brushMode.shift) {
 				subtractive = true;
 				foreach(var a in t) {
@@ -30,7 +33,8 @@ namespace LoneTower.SRP {
 		}
 
 		protected override void Stroke(object[] a) {
-
+			if(a == null)
+				return;
 			if(subtractive) {
 				foreach(var t in a) {
 					selection.Remove(t);
@@ -40,6 +44,6 @@ namespace LoneTower.SRP {
 					if(!selection.Contains(t))
 						selection.Add(t);
 				}
-		} 
+		}
 	}
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 namespace LoneTower.SRP {
 	public class SRPController {
 
-		public PickerBase logic;
+		public LogicBase logic;
 		public DrawerBase drawer;
 
 		VisibilityButton visibility;
@@ -18,7 +18,7 @@ namespace LoneTower.SRP {
 			if(arr != null)
 				c.AddRange(arr);
 			ScenePickerBase pi = (ScenePickerBase)Activator.CreateInstance(data.sceneInput, new object[] { data.selectType });
-			logic = (PickerBase)Activator.CreateInstance(data.logic, new object[] { pi, c });
+			logic = (LogicBase)Activator.CreateInstance(data.logic, new object[] { pi, c });
 			drawer = (DrawerBase)Activator.CreateInstance(data.drawer);
 			ParserBase parser = (ParserBase)Activator.CreateInstance(data.parser, logic);
 			drawer.drawTarget = parser;

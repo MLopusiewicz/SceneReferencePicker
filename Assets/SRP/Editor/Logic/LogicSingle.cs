@@ -5,9 +5,9 @@ using System.Linq;
 using UnityEngine;
 namespace LoneTower.SRP {
 
-	public class PickerSingle : PickerBase {
+	public class LogicSingle : LogicBase {
 
-		public PickerSingle(ScenePickerBase t, List<object> list = null) : base(t, list) {
+		public LogicSingle(ScenePickerBase t, List<object> list = null) : base(t, list) {
 
 		}
 

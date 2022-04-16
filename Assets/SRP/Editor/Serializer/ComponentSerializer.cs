@@ -25,12 +25,23 @@ namespace LoneTower.SRP {
 			return;
 		}
 
-		public override object[] Deserialize(Type t, SerializedProperty prop) {
-			if(t == typeof(Component[]))
-				return DeserializeComponentCollection(prop.FindPropertyRelative("collection"));
-			if(t == typeof(Component))
-				return DeserializeComponent(prop);
-			return null;
+		public override object[] Deserialize(SerializedProperty prop) {
+
+			Component obj = (Component)prop.objectReferenceValue;
+			if(obj == null)
+				return null;
+			else
+				return new object[] { obj };
+
+		}
+
+		public override object[] DeserializeArray(SerializedProperty prop) {
+			var collection = prop.FindPropertyRelative("collection");
+			object[] coll = new object[collection.arraySize];
+			for(int i = 0; i < collection.arraySize; i++) {
+				coll[i] = collection.GetArrayElementAtIndex(i).objectReferenceValue;
+			}
+			return coll;
 		}
 
 
@@ -53,22 +64,8 @@ namespace LoneTower.SRP {
 			}
 			collection.serializedObject.ApplyModifiedProperties();
 		}
+		 
 
-		static object[] DeserializeComponent(SerializedProperty prop) {
-			Component obj = (Component)prop.objectReferenceValue;
-			if(obj == null)
-				return null;
-			else
-				return new object[] { obj };
-		}
-
-		static object[] DeserializeComponentCollection(SerializedProperty collection) {
-			object[] coll = new object[collection.arraySize];
-			for(int i = 0; i < collection.arraySize; i++) {
-				coll[i] = collection.GetArrayElementAtIndex(i).objectReferenceValue;
-			}
-			return coll;
-		}
 
 		static bool CheckType(Type t, Type g) {
 			while(t != typeof(object)) {

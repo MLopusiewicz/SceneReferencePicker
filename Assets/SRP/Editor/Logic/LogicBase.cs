@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace LoneTower.SRP {
 
-	public abstract class PickerBase {
+	public abstract class LogicBase {
 		public event Action OnStrokeEnd;
 		public enum brushMode { normal, shift, ctrl }
 		public brushMode mode;
@@ -18,7 +18,7 @@ namespace LoneTower.SRP {
 
 		public ScenePickerBase input;
 
-		public PickerBase(ScenePickerBase input, List<object> list = null) {
+		public LogicBase(ScenePickerBase input, List<object> list = null) {
 			if(list == null)
 				selection = new List<object>();
 			selection = list;

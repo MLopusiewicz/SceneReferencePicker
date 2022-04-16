@@ -65,9 +65,9 @@ namespace LoneTower.SRP {
 
 		protected object[] Deserialize() {
 			if(isSingle)
-				return serializer.Deserialize(typeof(Component), prop);
+				return serializer.Deserialize(prop);
 			else
-				return serializer.Deserialize(typeof(Component[]), prop);
+				return serializer.DeserializeArray(prop);
 		}
 
 		protected override void OnDestroy() {

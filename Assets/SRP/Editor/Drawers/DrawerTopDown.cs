@@ -12,7 +12,7 @@ namespace LoneTower.SRP {
 		}
 
 		protected override void DrawHandle(Vector3[] hover) {
-			if(drawTarget.picker.mode == PickerBase.brushMode.shift)
+			if(drawTarget.picker.mode == LogicBase.brushMode.shift)
 				Handles.color = Color.red;
 			foreach(var a in hover) {
 				Vector3 dot = a + Vector3.up * 0.3f * SRPSettings.Scale;
