@@ -63,6 +63,12 @@ namespace LoneTower.SRP {
 
 		void MouseInput(Event e) {
 			HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));//disables LBM 
+			if(MouseScroll != null)
+				if(e.type == EventType.ScrollWheel) {
+					MouseScroll?.Invoke(e.delta.y);
+					e.Use();
+				}
+
 			if(!e.isMouse)
 				return;
 
@@ -81,11 +87,6 @@ namespace LoneTower.SRP {
 				}
 			}
 
-			if(MouseScroll != null)
-				if(e.type == EventType.ScrollWheel) {
-					MouseScroll?.Invoke(e.delta.y);
-					e.Use();
-				}
 		}
 
 		bool CheckButton(KeyCode key, bool state, Action Down, Action Up, Event e) {

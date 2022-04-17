@@ -59,7 +59,7 @@ namespace LoneTower.SRP {
 			input.OnPressed += StartStroke;
 			input.OnDrag += Stroke;
 			input.OnRelease += EndStroke;
-			input.OnCurrentChange += Follow;
+			input.OnHover += Follow;
 
 		}
 
@@ -69,7 +69,7 @@ namespace LoneTower.SRP {
 			input.OnPressed -= StartStroke;
 			input.OnDrag -= Stroke;
 			input.OnRelease -= EndStroke;
-			input.OnCurrentChange -= Follow;
+			input.OnHover -= Follow;
 		}
 
 		public void Toggle(bool state) {

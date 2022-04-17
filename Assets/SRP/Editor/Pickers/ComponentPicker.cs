@@ -14,9 +14,9 @@ namespace LoneTower.SRP {
 			List<object> s = new List<object>();
 
 			s.AddRange(g);
-
 			possible = s.ToArray();
 		}
+
 
 		protected override object[] GetRaycast() {
 			if(SceneView.mouseOverWindow == null)

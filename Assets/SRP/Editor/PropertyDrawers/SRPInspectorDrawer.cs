@@ -23,7 +23,7 @@ namespace LoneTower.SRP {
 					if(picker.logic.selection.Count > 0)
 						EditorGUI.LabelField(position, picker.logic.selection[0].ToString());
 					else
-						EditorGUI.LabelField(position, selectType.ToString());
+						EditorGUI.LabelField(position, selectType.Name);
 				}
 				if(EditorGUI.EndChangeCheck()) {
 					Reset();
@@ -31,7 +31,7 @@ namespace LoneTower.SRP {
 			} else {
 				position.x += 5;
 				position.width -= 5;
-				EditorGUI.LabelField(position, selectType.ToString());
+				EditorGUI.LabelField(position, selectType.Name);
 			}
 			EditorGUI.EndProperty();
 		}

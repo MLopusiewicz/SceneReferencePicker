@@ -9,21 +9,21 @@ using UnityEngine;
 namespace LoneTower.SRP {
 	public abstract class ScenePickerBase {
 
-		public Action<object[]> OnPressed, OnDrag, OnRelease, OnCurrentChange;
+		public Action<object[]> OnPressed, OnDrag, OnRelease, OnHover;
 		public object current;
 		public object[] possible;
 		public ScenePickerBase(Type t) {
 
 		}
-		public void Enable() {
+		public virtual void Enable() {
 			SceneInput.Instance.inputInterception = true;
 			SceneInput.Instance.MouseDown += Click;
 			SceneInput.Instance.MousePressing += Pressing;
 			SceneInput.Instance.MouseUp += Release;
 			SceneInput.Instance.MouseLoop += Update;
 		}
-
-		public void Disable() {
+		 
+		public virtual void Disable() {
 			SceneInput.Instance.inputInterception = false;
 			SceneInput.Instance.MouseDown -= Click;
 			SceneInput.Instance.MousePressing -= Pressing;
@@ -47,11 +47,7 @@ namespace LoneTower.SRP {
 
 		private void Update() {
 			object[] v = GetRaycast();
-			OnCurrentChange?.Invoke(v);
-			//if(v != current) {
-			//	OnCurrentChange?.Invoke(v);
-			//	current = v;
-			//}
+			OnHover?.Invoke(v);
 		}
 
 
