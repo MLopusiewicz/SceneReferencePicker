@@ -20,7 +20,7 @@ namespace LoneTower.SRP {
 			SceneInput.Instance.MouseDown += Click;
 			SceneInput.Instance.MousePressing += Pressing;
 			SceneInput.Instance.MouseUp += Release;
-			SceneInput.Instance.SceneLoop += Update;
+			SceneInput.Instance.MouseLoop += Update;
 		}
 
 		public virtual void Disable() {
@@ -28,6 +28,7 @@ namespace LoneTower.SRP {
 			SceneInput.Instance.MouseDown -= Click;
 			SceneInput.Instance.MousePressing -= Pressing;
 			SceneInput.Instance.MouseUp -= Release;
+
 			SceneInput.Instance.MouseLoop -= Update;
 		}
 

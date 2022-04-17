@@ -22,7 +22,7 @@ namespace LoneTower.SRP {
 				subtractive = false;
 
 			if(t == null)
-				return;
+				return;  
 
 			if(subtractive) {
 				foreach(var a in t) {

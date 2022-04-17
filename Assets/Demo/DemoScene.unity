@@ -857,15 +857,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   singlePick: {fileID: 0}
   pathPick:
-    collection: []
+    collection:
+    - {fileID: 34791974}
   topDown:
     collection:
-    - {fileID: 1185964270}
-    - {fileID: 34791976}
     - {fileID: 1865125217}
-    - {fileID: 314079518}
-    - {fileID: 499331517}
+    - {fileID: 554307005}
+    - {fileID: 806303369}
     - {fileID: 1278525867}
+    - {fileID: 499331517}
+    - {fileID: 1466039704}
+    - {fileID: 1185964270}
+    - {fileID: 314079518}
+    - {fileID: 34791976}
   topDownSingle: {fileID: 314079518}
 --- !u!4 &1095029104
 Transform:
@@ -875,7 +879,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1095029102}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.06, y: -0.9119482, z: 0.93567824}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

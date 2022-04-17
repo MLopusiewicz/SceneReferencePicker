@@ -63,9 +63,22 @@ namespace LoneTower.SRP {
 		}
 
 		protected override void Update() {
+			if(pressing)
+				base.Update();
+
+		}
+		public override void Enable() {
+			base.Enable();
+			SceneInput.Instance.SceneLoop += Draw;
+		}
+		public override void Disable() {
+			base.Disable();
+			SceneInput.Instance.SceneLoop -= Draw;
+		}
+
+		void Draw() {
 			if(!pressing)
 				return;
-			base.Update();
 			Vector2 v = Event.current.mousePosition;
 			Vector3[] p = new Vector3[5];
 			p[0] = GetPoint(startpos);
@@ -74,8 +87,6 @@ namespace LoneTower.SRP {
 			p[3] = GetPoint((startpos) + (v - startpos).y * Vector2.up);
 			p[4] = GetPoint(startpos);
 			Handles.DrawPolyLine(p);
-			Handles.DrawSolidRectangleWithOutline(GetSelectionRect(startpos, v - startpos), Color.clear, Color.white);
-
 
 		}
 	}
