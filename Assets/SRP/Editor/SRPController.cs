@@ -34,7 +34,7 @@ namespace LoneTower.SRP {
 			paintButton.OnDisable += PaintOff;
 
 			logic.Disable();
-			drawer.Hide(); 
+			drawer.Hide();
 		}
 
 		void VisibilityOn() {
@@ -51,12 +51,13 @@ namespace LoneTower.SRP {
 			logic.Enable();
 			drawer.Show();
 			drawer.showChoices = true;
+			drawer.showHandle = true;
 		}
 
 		void PaintOff() {
 			logic.Disable();
 			drawer.showChoices = false;
-
+			drawer.showHandle = false;
 		}
 
 		public Rect InspectorDraw(Rect position, string label) {

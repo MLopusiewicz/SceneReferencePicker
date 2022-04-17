@@ -45,7 +45,7 @@ namespace LoneTower.SRP {
 			OnRelease?.Invoke(GetRaycast());
 		}
 
-		private void Update() {
+		protected void Update() {
 			object[] v = GetRaycast();
 			OnHover?.Invoke(v);
 		}

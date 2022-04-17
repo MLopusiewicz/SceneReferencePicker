@@ -45,6 +45,7 @@ namespace LoneTower.SRP {
 				if(keys.ContainsKey(Event.current.keyCode))
 					keys[Event.current.keyCode]();
 			}
+
 		}
 
 		public void RegisterKey(KeyCode k, Action callback) {

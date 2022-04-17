@@ -14,11 +14,13 @@ namespace LoneTower.SRP {
 
 		public bool showSelection { get; set; }
 		public bool showChoices { get; set; }
+		public bool showHandle { get; set; }
 
 		public ParserBase drawTarget;
 
 		public DrawerBase() {
 			SceneView.duringSceneGui += SceneDraw;
+
 			color = colorBank.GetClosest(0);
 		}
 
@@ -28,9 +30,12 @@ namespace LoneTower.SRP {
 
 		public void Hide() {
 			showSelection = false;
+			showHandle = false;
+			showChoices = false;
 		}
 
 		public void Show() {
+			showHandle = true;
 			showSelection = true;
 		}
 
@@ -50,13 +55,15 @@ namespace LoneTower.SRP {
 			if(!showSelection) {
 				return;
 			}
+
 			Handles.color = color;
 			DrawSelection(drawTarget.Selection);
-			if(drawTarget.IsHovering) {
-				DrawHandle(drawTarget.Hover);
-			} else {
-				DrawHandle();
-			}
+			if(showHandle)
+				if(drawTarget.IsHovering) {
+					DrawHandle(drawTarget.Hover);
+				} else {
+					DrawHandle();
+				}
 		}
 
 		protected abstract void DrawEmptyHandle(Ray mouseRay);
