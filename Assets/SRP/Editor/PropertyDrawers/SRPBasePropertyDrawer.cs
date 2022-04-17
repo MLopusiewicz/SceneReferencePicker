@@ -15,7 +15,7 @@ namespace LoneTower.SRP {
 		protected Type selectType;
 		protected override void Awake() {
 			if(fieldInfo.FieldType.IsGenericType) {
-				if(fieldInfo.FieldType.GetGenericTypeDefinition() == typeof(ArrayDrawer<>) || fieldInfo.FieldType.GetGenericTypeDefinition() == typeof(ListDrawer<>)) {
+				if(fieldInfo.FieldType.GetGenericTypeDefinition() == typeof(PickableArray<>) || fieldInfo.FieldType.GetGenericTypeDefinition() == typeof(PickableList<>)) {
 					isSingle = false;
 					selectType = fieldInfo.FieldType.GenericTypeArguments[0];
 				}
@@ -67,7 +67,7 @@ namespace LoneTower.SRP {
 			if(isSingle)
 				return serializer.Deserialize(prop);
 			else
-				return serializer.DeserializeArray(prop);
+				return serializer.DeserializeArray(prop.FindPropertyRelative("collection"));
 		}
 
 		protected override void OnDestroy() {

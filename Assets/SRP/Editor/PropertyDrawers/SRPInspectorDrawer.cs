@@ -17,14 +17,21 @@ namespace LoneTower.SRP {
 			}
 			if(isSingle) {
 				EditorGUI.BeginChangeCheck();
-				EditorGUI.ObjectField(position, prop, new GUIContent(""));
+				if(CheckType(selectType, typeof(Component)))
+					EditorGUI.ObjectField(position, prop, new GUIContent(""));
+				else {
+					if(picker.logic.selection.Count > 0)
+						EditorGUI.LabelField(position, picker.logic.selection[0].ToString());
+					else
+						EditorGUI.LabelField(position, selectType.ToString());
+				}
 				if(EditorGUI.EndChangeCheck()) {
 					Reset();
 				}
 			} else {
 				position.x += 5;
 				position.width -= 5;
-				EditorGUI.LabelField(position, selectType.Name);
+				EditorGUI.LabelField(position, selectType.ToString());
 			}
 			EditorGUI.EndProperty();
 		}

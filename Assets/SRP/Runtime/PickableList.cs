@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace LoneTower.SRP {
 	[System.Serializable]
-	public class ListDrawer<T> {
+	public class PickableList<T> {
 		[SerializeField]
 		List<T> collection;
 
-		public ListDrawer() {
+		public PickableList() {
 			collection = new List<T>();
 		}
 
-		public ListDrawer(List<T> a) {
+		public PickableList(List<T> a) {
 			collection = a;
 		}
 
@@ -21,12 +21,12 @@ namespace LoneTower.SRP {
 			set { collection[i] = value; }
 		}
 
-		public static implicit operator List<T>(ListDrawer<T> list) {
+		public static implicit operator List<T>(PickableList<T> list) {
 			return list.collection;
 		}
 
-		public static implicit operator ListDrawer<T>(List<T> list) {
-			return new ListDrawer<T>(list);
+		public static implicit operator PickableList<T>(List<T> list) {
+			return new PickableList<T>(list);
 		}
 
 

@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace LoneTower.SRP {
 	[System.Serializable]
-	public class ArrayDrawer<T> {
+	public class PickableArray<T> {
 
 		[SerializeField]
 		T[] collection;
 
-		ArrayDrawer(T[] arr) {
+		PickableArray(T[] arr) {
 			collection = arr;
 		}
 
@@ -18,12 +18,12 @@ namespace LoneTower.SRP {
 			set { collection[i] = value; }
 		}
 
-		public static implicit operator T[](ArrayDrawer<T> arr) {
+		public static implicit operator T[](PickableArray<T> arr) {
 			return arr.collection;
 		}
 
-		public static implicit operator ArrayDrawer<T>(T[] arr) {
-			return new ArrayDrawer<T>(arr);
+		public static implicit operator PickableArray<T>(T[] arr) {
+			return new PickableArray<T>(arr);
 		}
 	}
 

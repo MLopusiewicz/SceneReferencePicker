@@ -9,10 +9,10 @@ public class DemoPicker : MonoBehaviour {
 	public DemoComponent singlePick;
 
 	[SRP(typeof(PathPicker))]
-	public ListDrawer<DemoComponent> pathPick;
+	public PickableList<DemoComponent> pathPick;
 
 	[SRP(typeof(TopDownPicker))]
-	public ListDrawer<MeshRenderer> topDown;
+	public PickableList<MeshRenderer> topDown;
 
 	[SRP(typeof(TopDownSinglePicker))]
 	public MeshRenderer topDownSingle;

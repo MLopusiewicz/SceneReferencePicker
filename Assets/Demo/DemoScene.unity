@@ -855,14 +855,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7599f95b0324d788b0b836c30aa83f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  singlePick: {fileID: 806303367}
+  singlePick: {fileID: 34791974}
   pathPick:
-    collection:
-    - {fileID: 1865125215}
-    - {fileID: 554307003}
-    - {fileID: 806303367}
-    - {fileID: 34791974}
-    - {fileID: 314079516}
+    collection: []
   topDown:
     collection:
     - {fileID: 1185964270}
