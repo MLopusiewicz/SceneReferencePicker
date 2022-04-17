@@ -15,17 +15,21 @@ namespace LoneTower.SRP {
 
 
 		protected override void StartStroke(object[] t) {
-			if(t == null)
-				return;
 
 			if(mode == brushMode.shift) {
 				subtractive = true;
+			} else
+				subtractive = false;
+
+			if(t == null)
+				return;
+
+			if(subtractive) {
 				foreach(var a in t) {
 					selection.Remove(a);
 				}
 			} else
 				foreach(var a in t) {
-					subtractive = false;
 					if(!selection.Contains(a))
 						selection.Add(a);
 				}

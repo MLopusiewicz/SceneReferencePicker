@@ -28,8 +28,7 @@ namespace LoneTower.SRP {
 					if(cc != null)
 						return new object[] { cc };
 				}
-			}
-
+			} 
 			return null;
 		}
 

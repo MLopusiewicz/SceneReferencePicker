@@ -63,7 +63,7 @@ namespace LoneTower.SRP {
 			}
 			collection.serializedObject.ApplyModifiedProperties();
 		}
-		 
+
 
 
 		static bool CheckType(Type t, Type g) {

@@ -20,9 +20,9 @@ namespace LoneTower.SRP {
 			SceneInput.Instance.MouseDown += Click;
 			SceneInput.Instance.MousePressing += Pressing;
 			SceneInput.Instance.MouseUp += Release;
-			SceneInput.Instance.MouseLoop += Update;
+			SceneInput.Instance.SceneLoop += Update;
 		}
-		 
+
 		public virtual void Disable() {
 			SceneInput.Instance.inputInterception = false;
 			SceneInput.Instance.MouseDown -= Click;
@@ -33,7 +33,7 @@ namespace LoneTower.SRP {
 
 		protected abstract object[] GetRaycast();
 
-		private void Click() {
+		protected virtual void Click() {
 			OnPressed?.Invoke(GetRaycast());
 		}
 
@@ -41,11 +41,11 @@ namespace LoneTower.SRP {
 			OnDrag?.Invoke(GetRaycast());
 		}
 
-		private void Release() {
+		protected virtual void Release() {
 			OnRelease?.Invoke(GetRaycast());
 		}
 
-		protected void Update() {
+		protected virtual void Update() {
 			object[] v = GetRaycast();
 			OnHover?.Invoke(v);
 		}
