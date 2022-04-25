@@ -5,18 +5,11 @@ using UnityEngine;
 
 public class DemoPicker : MonoBehaviour {
 
-	[SRP(typeof(SinglePicker))]
+	[SRPDefaultBrush]
 	public DemoComponent singlePick;
 
-	[SRP(typeof(PathPicker))]
+	[SRPTopDown]
 	public PickableList<DemoComponent> pathPick;
-
-	[SRP(typeof(LogicMain), typeof(DrawerTopDown), typeof(ParserTransform), typeof(ComponentRectPicker), typeof(ComponentSerializer))]
-	public PickableList<MeshRenderer> topDown;
-
-	[SRP(typeof(TopDownSinglePicker))]
-	public MeshRenderer topDownSingle;
-
 }
 
 

@@ -46,7 +46,8 @@ namespace LoneTower.SRP {
 		protected abstract void StartStroke(object[] t);
 		protected abstract void Stroke(object[] t);
 		protected virtual void EndStroke(object[] t) {
-			OnStrokeEnd?.Invoke();
+			OnStrokeEnd?.Invoke(); 
+			mode = brushMode.normal;
 		}
 
 		private void Follow(object[] obj) {	

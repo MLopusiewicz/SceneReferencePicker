@@ -65,7 +65,6 @@ namespace LoneTower.SRP {
 		protected override void Update() {
 			if(pressing)
 				base.Update();
-
 		}
 		public override void Enable() {
 			base.Enable();
@@ -87,7 +86,8 @@ namespace LoneTower.SRP {
 			p[3] = GetPoint((startpos) + (v - startpos).y * Vector2.up);
 			p[4] = GetPoint(startpos);
 			Handles.DrawPolyLine(p);
-
+			Handles.color = Color.white * 0.3f;
+			Handles.DrawAAConvexPolygon(p[0], p[1], p[2], p[3]);
 		}
 	}
 }

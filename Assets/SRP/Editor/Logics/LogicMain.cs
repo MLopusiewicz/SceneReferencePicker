@@ -48,6 +48,6 @@ namespace LoneTower.SRP {
 					if(!selection.Contains(t))
 						selection.Add(t);
 				}
-		}
+		} 
 	}
 }
