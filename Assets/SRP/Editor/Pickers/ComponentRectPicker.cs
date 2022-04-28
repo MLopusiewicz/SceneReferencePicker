@@ -35,7 +35,7 @@ namespace LoneTower.SRP {
 			OnHover?.Invoke(null);
 		}
 
-		protected override object[] GetRaycast() {
+		protected override object[] GetSelection() {
 			{
 				if(SceneView.mouseOverWindow == null)
 					return null;

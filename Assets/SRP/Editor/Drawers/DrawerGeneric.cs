@@ -11,7 +11,7 @@ namespace LoneTower.SRP {
 		}
 
 		protected override void DrawHandle(Vector3[] hover) {
-			if(drawTarget.picker.mode == LogicBase.brushMode.shift)
+			if(drawTarget.picker.mode == BrushBase.brushMode.shift)
 				Handles.color = Color.red;
 			else
 				Handles.color = Color.white;

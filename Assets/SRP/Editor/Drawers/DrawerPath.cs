@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using static LoneTower.SRP.LogicBase;
+using static LoneTower.SRP.BrushBase;
 
 namespace LoneTower.SRP {
 	public class DrawerPath : DrawerPathBase {

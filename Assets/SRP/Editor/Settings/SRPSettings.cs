@@ -23,7 +23,7 @@ namespace LoneTower.SRP {
 		static string assetPath = "Assets\\Editor Default Resources\\LoneTower\\SRP";
 		static string assetName = @"Settings.asset";
 
-		public static Color choiceColor {
+		public static Color MarkColor {
 			get {
 				return Instance.data.choiceColor;
 			}
@@ -51,7 +51,7 @@ namespace LoneTower.SRP {
 				Instance.data.lineScale = value;
 			}
 		}
-		public static float ChoiceSize {
+		public static float MarkScale {
 			get { return Instance.data.choiceSize; }
 			set {
 				Instance.data.choiceSize = value;
@@ -59,6 +59,7 @@ namespace LoneTower.SRP {
 		}
 
 		SRPData data;
+
 		public SRPSettings() {
 			Load();
 		}
@@ -78,13 +79,14 @@ namespace LoneTower.SRP {
 			if(a == null) {
 				data = SRPData.defaultData;
 				Save();
+				Debug.LogError("<color=#ED1E79>[SRP]</color> Settings can't be loaded: restored defaults");
 			} else {
 				try {
 					data = JsonUtility.FromJson<SRPData>(a.text);
 				} catch {
 					data = SRPData.defaultData;
 					Save();
-					Debug.LogError("[SRP] Settings can't be loaded: RESETED");
+				Debug.LogError("<color=#ED1E79>[SRP]</color> Settings can't be loaded: restored defaults");
 				}
 			}
 		}

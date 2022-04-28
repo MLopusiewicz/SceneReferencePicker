@@ -10,7 +10,6 @@ namespace LoneTower.SRP {
 	public abstract class ScenePickerBase {
 
 		public Action<object[]> OnPressed, OnDrag, OnRelease, OnHover;
-		public object current;
 		public object[] possible;
 		public ScenePickerBase(Type t) {
 
@@ -32,26 +31,25 @@ namespace LoneTower.SRP {
 			SceneInput.Instance.MouseLoop -= Update;
 		}
 
-		protected abstract object[] GetRaycast();
+		protected abstract object[] GetSelection();
 
 		protected virtual void Click() {
-			OnPressed?.Invoke(GetRaycast());
+			OnPressed?.Invoke(GetSelection());
 		}
 
 		protected virtual void Pressing() {
-			OnDrag?.Invoke(GetRaycast());
+			OnDrag?.Invoke(GetSelection());
 		}
 
 		protected virtual void Release() {
-			OnRelease?.Invoke(GetRaycast());
+			OnRelease?.Invoke(GetSelection());
 		}
 
 		protected virtual void Update() {
-			object[] v = GetRaycast();
+			object[] v = GetSelection();
 			OnHover?.Invoke(v);
 		}
-
-
+		
 		~ScenePickerBase() {
 			Disable();
 		}

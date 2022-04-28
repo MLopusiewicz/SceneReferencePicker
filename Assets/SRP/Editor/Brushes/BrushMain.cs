@@ -6,10 +6,10 @@ using UnityEditor;
 using UnityEngine;
 
 namespace LoneTower.SRP {
-	public class LogicMain : LogicBase {
+	public class BrushMain : BrushBase {
 		bool subtractive;
 
-		public LogicMain(ScenePickerBase t, List<object> list = null) : base(t, list) {
+		public BrushMain(ScenePickerBase t, List<object> list = null) : base(t, list) {
 
 		}
 

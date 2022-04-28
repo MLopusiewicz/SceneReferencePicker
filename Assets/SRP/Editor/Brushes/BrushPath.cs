@@ -5,12 +5,12 @@ using UnityEngine;
 
 
 namespace LoneTower.SRP {
-	public class LogicPath : LogicBase {
+	public class BrushPath : BrushBase {
 
 		bool drag;
 		int index;
 
-		public LogicPath(ScenePickerBase t, List<object> list = null) : base(t, list) {
+		public BrushPath(ScenePickerBase t, List<object> list = null) : base(t, list) {
 
 		}
 

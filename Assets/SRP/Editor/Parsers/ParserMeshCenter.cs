@@ -6,7 +6,7 @@ using UnityEngine;
 namespace LoneTower.SRP {
 	public class ParserMeshCenter : ParserBase {
 
-		public ParserMeshCenter(LogicBase picker) : base(picker) {
+		public ParserMeshCenter(BrushBase picker) : base(picker) {
 		}
 
 		protected override Vector3 GetPos(object t) {

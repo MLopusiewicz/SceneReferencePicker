@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using static LoneTower.SRP.LogicBase;
+using static LoneTower.SRP.BrushBase;
 
 namespace LoneTower.SRP {
 	public abstract class ParserBase {
-		public LogicBase picker;
-		protected ParserBase(LogicBase picker) {
+		public BrushBase picker;
+		protected ParserBase(BrushBase picker) {
 			this.picker = picker;
 		}
 
@@ -35,7 +35,7 @@ namespace LoneTower.SRP {
 			}
 		}
 
-		public Vector3[] Choices {
+		public Vector3[] Marks {
 			get {
 				if(picker.input.possible == null)
 					return new Vector3[0];

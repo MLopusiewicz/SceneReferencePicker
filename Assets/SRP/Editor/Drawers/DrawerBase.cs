@@ -8,12 +8,22 @@ using UnityEngine;
 namespace LoneTower.SRP {
 	public abstract class DrawerBase {
 
-		static SelectionBank<Color> colorBank = new SelectionBank<Color>(SRPSettings.colors);
+		public static SelectionBank<Color> ColorBank {
+			get {
+				if(colorBank == null)
+					colorBank = new SelectionBank<Color>(SRPSettings.colors);
+				return colorBank;
+			}
+			set {
+				colorBank = value;
+			} 
+		}
+		static SelectionBank<Color> colorBank;
 
 		public Color color { get; private set; }
 
 		public bool showSelection { get; set; }
-		public bool showChoices { get; set; }
+		public bool showMarks { get; set; }
 		public bool showHandle { get; set; }
 
 		public ParserBase drawTarget;
@@ -21,7 +31,7 @@ namespace LoneTower.SRP {
 		public DrawerBase() {
 			SceneView.duringSceneGui += SceneDraw;
 
-			color = colorBank.GetClosest(0);
+			color = ColorBank.GetClosest(0);
 		}
 
 		~DrawerBase() {
@@ -31,7 +41,7 @@ namespace LoneTower.SRP {
 		public void Hide() {
 			showSelection = false;
 			showHandle = false;
-			showChoices = false;
+			showMarks = false;
 		}
 
 		public void Show() {
@@ -42,14 +52,14 @@ namespace LoneTower.SRP {
 		public void Clear() {
 			SceneView.duringSceneGui -= SceneDraw;
 			showSelection = false;
-			colorBank.Free(color);
+			ColorBank.Free(color);
 		}
 
 
 		void SceneDraw(SceneView obj) {
-			if(showChoices) {
-				Handles.color = SRPSettings.choiceColor;
-				DrawChoices(drawTarget.Choices);
+			if(showMarks) {
+				Handles.color = SRPSettings.MarkColor;
+				DrawMarks(drawTarget.Marks);
 			}
 
 			if(!showSelection) {
@@ -69,9 +79,9 @@ namespace LoneTower.SRP {
 		protected abstract void DrawEmptyHandle(Ray mouseRay);
 		protected abstract void DrawHandle(Vector3[] hover);
 		protected abstract void DrawSelection(Vector3[] selection);
-		protected virtual void DrawChoices(Vector3[] choices) {
+		protected virtual void DrawMarks(Vector3[] choices) {
 			foreach(Vector3 a in choices) {
-				Handles.DrawSolidDisc(a, GetCameraDirection(a), SRPSettings.ChoiceSize);
+				Handles.DrawSolidDisc(a, GetCameraDirection(a), SRPSettings.MarkScale);
 			}
 		}
 

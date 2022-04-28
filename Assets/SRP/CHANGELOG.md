@@ -12,3 +12,10 @@ base
 - arrayDrawer -> pickableArray
 - added componentRectPicker
 - serializer extracted
+
+### 2.0.1
+- better missing type logging
+- documentation
+- choices renamed to marks
+- color bank fix 
+- 

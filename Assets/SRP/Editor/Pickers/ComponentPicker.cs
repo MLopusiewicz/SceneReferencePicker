@@ -17,7 +17,7 @@ namespace LoneTower.SRP {
 			possible = s.ToArray();
 		}
 		 
-		protected override object[] GetRaycast() {
+		protected override object[] GetSelection() {
 			if(SceneView.mouseOverWindow == null)
 				return null;
 			if(SceneView.mouseOverWindow.ToString() == " (UnityEditor.SceneView)") {

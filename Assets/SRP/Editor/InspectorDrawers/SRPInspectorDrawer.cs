@@ -17,9 +17,11 @@ namespace LoneTower.SRP {
 			}
 			if(isSingle) {
 				EditorGUI.BeginChangeCheck();
-				if(CheckType(selectType, typeof(Component)))
+				if(CheckType(selectType, typeof(Component))) {
+					position.x += 5;
+					position.width -= 5;
 					EditorGUI.ObjectField(position, prop, new GUIContent(""));
-				else {
+				} else {
 					if(picker.logic.selection.Count > 0)
 						EditorGUI.LabelField(position, picker.logic.selection[0].ToString());
 					else

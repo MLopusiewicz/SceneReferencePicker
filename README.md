@@ -17,9 +17,12 @@ https://github.com/MLopusiewicz/SceneReferencePicker.git?path=/Assets/SRP/#relea
 ```
 
 ## Usage
-Declare SRP attribute above your Component type field.
+Declare SRP attribute above your field.
 ![SRP usage](images/SRPUsage.png)
 
+## License
+Licensed under: <br>
+[MIT License](Assets/SRP/License.md)
 ## Enjoy!
 
 ## Contact
