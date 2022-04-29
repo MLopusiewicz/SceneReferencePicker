@@ -6,12 +6,12 @@ using static LoneTower.SRP.BrushBase;
 
 namespace LoneTower.SRP {
 	public class DrawerPath : DrawerPathBase {
-		protected override void DrawEmptyHandle(Ray mouseRay) {
+		protected override void DrawCoursor(Ray mouseRay) {
 
 		}
 
-		protected override void DrawHandle(Vector3[] hover) {
-			base.DrawHandle(hover);
+		protected override void DrawBrush(Vector3[] hover) {
+			base.DrawBrush(hover);
 			foreach(var a in hover)
 				Handles.DrawWireDisc(a, Vector3.up, 0.2f * SRPSettings.Scale, 3f * SRPSettings.LineScale);
 		}

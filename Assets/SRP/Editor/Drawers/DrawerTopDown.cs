@@ -7,11 +7,11 @@ namespace LoneTower.SRP {
 	public class DrawerTopDown : DrawerBase {
 
 
-		protected override void DrawEmptyHandle(Ray mouseRay) {
+		protected override void DrawCoursor(Ray mouseRay) {
 
 		}
 
-		protected override void DrawHandle(Vector3[] hover) {
+		protected override void DrawBrush(Vector3[] hover) {
 			if(drawTarget.picker.mode == BrushBase.brushMode.shift)
 				Handles.color = Color.red;
 			foreach(var a in hover) {

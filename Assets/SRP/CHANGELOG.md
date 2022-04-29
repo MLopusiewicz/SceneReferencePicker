@@ -13,9 +13,9 @@ base
 - added componentRectPicker
 - serializer extracted
 
-### 2.0.1
+### 3.0.0
 - better missing type logging
 - documentation
 - choices renamed to marks
 - color bank fix 
-- 
+- Logic renamed to Brush

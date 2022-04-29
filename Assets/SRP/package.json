@@ -1,6 +1,6 @@
 {
   "name": "com.lonetower.srp",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "displayName": "SRP - Scene Reference Picker",
   "description": "Fully generic inspector extension for component picking from Scene View.",
   "unity": "2019.1", 

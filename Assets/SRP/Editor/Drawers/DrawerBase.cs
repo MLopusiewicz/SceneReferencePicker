@@ -16,7 +16,7 @@ namespace LoneTower.SRP {
 			}
 			set {
 				colorBank = value;
-			} 
+			}
 		}
 		static SelectionBank<Color> colorBank;
 
@@ -68,19 +68,19 @@ namespace LoneTower.SRP {
 
 			Handles.color = color;
 			DrawSelection(drawTarget.Selection);
-			if(showHandle)
+			if(showHandle) {
+				DrawCoursor(MouseRay());
 				if(drawTarget.IsHovering) {
-					DrawHandle(drawTarget.Hover);
-				} else {
-					DrawHandle();
+					DrawBrush(drawTarget.Hover);
 				}
+			}
 		}
 
-		protected abstract void DrawEmptyHandle(Ray mouseRay);
-		protected abstract void DrawHandle(Vector3[] hover);
+		protected abstract void DrawCoursor(Ray mouseRay);
+		protected abstract void DrawBrush(Vector3[] hover);
 		protected abstract void DrawSelection(Vector3[] selection);
-		protected virtual void DrawMarks(Vector3[] choices) {
-			foreach(Vector3 a in choices) {
+		protected virtual void DrawMarks(Vector3[] marks) {
+			foreach(Vector3 a in marks) {
 				Handles.DrawSolidDisc(a, GetCameraDirection(a), SRPSettings.MarkScale);
 			}
 		}
@@ -96,9 +96,6 @@ namespace LoneTower.SRP {
 			return HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
 		}
 
-		protected void DrawHandle() {
-			DrawEmptyHandle(MouseRay());
-		}
 		protected Vector3 GetCameraDirection(Vector3 pos) {
 			if(Camera.current.orthographic) {
 				return Camera.current.transform.forward;

@@ -32,7 +32,7 @@ namespace LoneTower.SRP {
 		}
 
 		Type TryType(string objType, Type expected, Type fallBack) {
-			objType = "LoneTower.SRP." + objType;
+
 			Type current = Type.GetType(objType);
 
 			if(CheckType(current, expected)) {

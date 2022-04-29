@@ -11,7 +11,7 @@ namespace LoneTower.SRP {
 
 		protected override Vector3 GetPos(object t) {
 			if(!(t is Component)) {
-				throw new System.Exception($"[SRP] Wrong DTO. Expected {typeof(Component)} was:  {t.GetType().Name} ");
+				throw new System.Exception($"[SRP] Wrong type. Expected {typeof(Component)} was:  {t.GetType().Name} ");
 			}
 			return (t as Component).transform.position;
 		}

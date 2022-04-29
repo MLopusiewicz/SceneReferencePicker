@@ -8,7 +8,7 @@ namespace LoneTower.SRP {
 	public abstract class DrawerPathBase : DrawerBase {
 
 
-		protected override void DrawHandle(Vector3[] hover) {
+		protected override void DrawBrush(Vector3[] hover) {
 			switch(drawTarget.mode) {
 				case brushMode.ctrl:
 					Handles.color = Color.green;

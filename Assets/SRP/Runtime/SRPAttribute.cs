@@ -32,7 +32,13 @@ namespace LoneTower.SRP {
 			this.picker = data[3];
 			this.serializer = data[4];
 		}
-
+		public SRPAttribute() {
+			brush = "LoneTower.SRP.BrushMain";
+			parser = "LoneTower.SRP.ParserTransform";
+			drawer = "LoneTower.SRP.DrawerGeneric";
+			picker = "LoneTower.SRP.ComponentPicker";
+			serializer = "LoneTower.SRP.ComponentSerializer";
+		}
 	}
 
 }
