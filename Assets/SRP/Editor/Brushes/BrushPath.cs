@@ -92,6 +92,7 @@ namespace LoneTower.SRP {
 			}
 			if(mode == brushMode.shift)
 				selection.Remove(t);
+
 			base.EndStroke(new object[] { t });
 		}
 	}

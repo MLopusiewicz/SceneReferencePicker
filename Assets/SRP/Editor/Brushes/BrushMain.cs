@@ -58,5 +58,8 @@ namespace LoneTower.SRP {
 					}
 				}
 		}
+		protected override void EndStroke(object[] t) {
+			base.EndStroke(lastModified.ToArray());
+		}
 	}
 }
