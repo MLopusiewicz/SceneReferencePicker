@@ -6,15 +6,15 @@ using UnityEngine;
 namespace LoneTower.SRP {
 	public class SRPTypeParser {
 
-		public Type logic;
+		public Type brush;
 		public Type parser;
 		public Type drawer;
 		public Type sceneInput;
 		public Type selectType;
 		public Type serializer;
 
-		public SRPTypeParser(string logic, string parser, string drawer, string picker, string serializer) {
-			this.logic = TryType(logic, typeof(BrushBase), typeof(BrushMain));
+		public SRPTypeParser(string brush, string parser, string drawer, string picker, string serializer) {
+			this.brush = TryType(brush, typeof(BrushBase), typeof(BrushMain));
 			this.parser = TryType(parser, typeof(ParserBase), typeof(ParserTransform));
 			this.drawer = TryType(drawer, typeof(DrawerBase), typeof(DrawerGeneric));
 			this.sceneInput = TryType(picker, typeof(ScenePickerBase), typeof(ComponentPicker));
@@ -22,7 +22,7 @@ namespace LoneTower.SRP {
 		}
 
 		public SRPTypeParser(SRPAttribute attr) {
-			this.logic = TryType(attr.brush, typeof(BrushBase), typeof(BrushMain));
+			this.brush = TryType(attr.brush, typeof(BrushBase), typeof(BrushMain));
 			this.parser = TryType(attr.parser, typeof(ParserBase), typeof(ParserTransform));
 			this.drawer = TryType(attr.drawer, typeof(DrawerBase), typeof(DrawerGeneric));
 			this.sceneInput = TryType(attr.picker, typeof(ScenePickerBase), typeof(ComponentPicker));

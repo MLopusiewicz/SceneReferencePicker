@@ -7,7 +7,7 @@ using UnityEngine;
 namespace LoneTower.SRP {
 	public class SRPController {
 
-		public BrushBase logic;
+		public BrushBase brush;
 		public DrawerBase drawer;
 
 		VisibilityButton visibility;
@@ -18,9 +18,9 @@ namespace LoneTower.SRP {
 			if(arr != null)
 				c.AddRange(arr);
 			ScenePickerBase pi = (ScenePickerBase)Activator.CreateInstance(types.sceneInput, new object[] { types.selectType });
-			logic = (BrushBase)Activator.CreateInstance(types.logic, new object[] { pi, c });
+			brush = (BrushBase)Activator.CreateInstance(types.brush, new object[] { pi, c });
 			drawer = (DrawerBase)Activator.CreateInstance(types.drawer);
-			ParserBase parser = (ParserBase)Activator.CreateInstance(types.parser, logic);
+			ParserBase parser = (ParserBase)Activator.CreateInstance(types.parser, brush);
 			drawer.drawTarget = parser;
 
 			visibility = new VisibilityButton();
@@ -33,13 +33,13 @@ namespace LoneTower.SRP {
 			paintButton.OnEnable += PaintOn;
 			paintButton.OnDisable += PaintOff;
 
-			logic.Disable();
+			brush.Disable();
 			drawer.Hide();
 		}
 
 		void VisibilityOn() {
 			drawer.Hide();
-			logic.Disable();
+			brush.Disable();
 			drawer.showMarks = false;
 		}
 
@@ -48,21 +48,21 @@ namespace LoneTower.SRP {
 		}
 
 		void PaintOn() {
-			logic.Enable();
+			brush.Enable();
 			drawer.Show();
 			drawer.showMarks = true;
 			drawer.showHandle = true;
 		}
 
 		void PaintOff() {
-			logic.Disable();
+			brush.Disable();
 			drawer.showMarks = false;
 			drawer.showHandle = false;
 		}
 
 		public Rect InspectorDraw(Rect position, string label) {
 			visibility.state = !drawer.showSelection;
-			paintButton.state = logic.enabled;
+			paintButton.state = brush.enabled;
 			position = EditorGUI.PrefixLabel(position, UnityEngine.GUIUtility.GetControlID(FocusType.Passive), new GUIContent(label));
 
 			GUITools.ColorField(position, drawer.color);
@@ -73,15 +73,15 @@ namespace LoneTower.SRP {
 		}
 
 		public void Clear() {
-			logic.Disable();
+			brush.Disable();
 			drawer.Clear();
 		}
 
 		public State State {
-			get { return new State(visibility.state, logic.enabled); }
+			get { return new State(visibility.state, brush.enabled); }
 			set {
 				drawer.showSelection = !value.visible;
-				logic.Toggle(value.enabled);
+				brush.Toggle(value.enabled);
 			}
 		}
 

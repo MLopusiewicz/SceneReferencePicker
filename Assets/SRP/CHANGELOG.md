@@ -19,3 +19,6 @@ base
 - choices renamed to marks
 - color bank fix 
 - Logic renamed to Brush
+
+#3.0.1
+- OnStrokeEnd passes object[]

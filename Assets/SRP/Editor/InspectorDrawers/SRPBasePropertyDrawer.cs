@@ -26,7 +26,7 @@ namespace LoneTower.SRP {
 			}
 
 			picker = GetPicker();
-			picker.logic.OnStrokeEnd += Serialize;
+			picker.brush.OnStrokeEnd += Serialize;
 			if(state != null)
 				picker.State = state.Value;
 
@@ -52,16 +52,16 @@ namespace LoneTower.SRP {
 			prop = null; //forces awake
 		}
 
-		protected void Serialize() {
+		protected void Serialize(object[] t) {
 			if(isSingle) {
-				if(picker.logic.selection.Count > 0)
-					serializer.Serialize(picker.logic.selection[picker.logic.selection.Count - 1], prop);
+				if(picker.brush.selection.Count > 0)
+					serializer.Serialize(picker.brush.selection[picker.brush.selection.Count - 1], prop);
 				else
 					serializer.Serialize(null, prop);
 				picker.Clear();
 				Reset();
 			} else {
-				serializer.SerializeArray(picker.logic.selection.ToArray(), prop.FindPropertyRelative("collection"));
+				serializer.SerializeArray(picker.brush.selection.ToArray(), prop.FindPropertyRelative("collection"));
 			}
 		}
 

@@ -7,7 +7,7 @@ using UnityEngine;
 namespace LoneTower.SRP {
 
 	public abstract class BrushBase {
-		public event Action OnStrokeEnd;
+		public event Action<object[]> OnStrokeEnd;
 		public enum brushMode { normal, shift, ctrl }
 		public brushMode mode;
 		public object[] hover { get; private set; }
@@ -46,7 +46,7 @@ namespace LoneTower.SRP {
 		protected abstract void StartStroke(object[] t);
 		protected abstract void Stroke(object[] t);
 		protected virtual void EndStroke(object[] t) {
-			OnStrokeEnd?.Invoke(); 
+			OnStrokeEnd?.Invoke(t); 
 			mode = brushMode.normal;
 		}
 
