@@ -15,7 +15,6 @@ namespace LoneTower.SRP {
 		public bool enabled { get; private set; }
 
 		public List<object> selection;
-
 		public ScenePickerBase input;
 
 		public BrushBase(ScenePickerBase input, List<object> list = null) {
@@ -46,11 +45,11 @@ namespace LoneTower.SRP {
 		protected abstract void StartStroke(object[] t);
 		protected abstract void Stroke(object[] t);
 		protected virtual void EndStroke(object[] t) {
-			OnStrokeEnd?.Invoke(t); 
+			OnStrokeEnd?.Invoke(t);
 			mode = brushMode.normal;
 		}
 
-		private void Follow(object[] obj) {	
+		private void Follow(object[] obj) {
 			hover = obj;
 		}
 
