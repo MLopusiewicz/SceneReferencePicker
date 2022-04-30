@@ -41,24 +41,26 @@ namespace LoneTower.SRP {
 
 		}
 
-		protected override void Stroke(object[] a) {
-			if(a == null)
+		protected override void Stroke(object[] t) {
+			if(t == null)
 				return;
 			if(subtractive) {
-				foreach(var t in a) {
-					if(selection.Remove(a)) {
+				foreach(var a in t) {
+					if(selection.Remove(t)) {
 						lastModified.Add(a);
 					}
 				}
 			} else
-				foreach(var t in a) {
-					if(!selection.Contains(t)) {
-						selection.Add(t);
+				foreach(var a in t) {
+					if(!selection.Contains(a)) {
+						selection.Add(a);
 						lastModified.Add(a);
 					}
 				}
 		}
 		protected override void EndStroke(object[] t) {
+			foreach(var a in lastModified)
+				Debug.Log(a.ToString());
 			base.EndStroke(lastModified.ToArray());
 		}
 	}
