@@ -14,9 +14,9 @@ namespace LoneTower.SRP {
 		public string drawer;
 		public string picker;
 		public string serializer;
+		public string selectType;
 
-
-		public Type selectType;
+		public string[] GetSettings() { return new string[] { brush, parser, drawer, picker, serializer }; }
 
 		public SRPAttribute(string brush, string parser, string drawer, string sceneInput, string serializer) {
 			this.brush = brush;
@@ -32,6 +32,7 @@ namespace LoneTower.SRP {
 			this.picker = data[3];
 			this.serializer = data[4];
 		}
+
 		public SRPAttribute() {
 			brush = "LoneTower.SRP.BrushMain";
 			parser = "LoneTower.SRP.ParserTransform";

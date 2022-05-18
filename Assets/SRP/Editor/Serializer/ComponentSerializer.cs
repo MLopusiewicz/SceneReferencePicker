@@ -36,11 +36,15 @@ namespace LoneTower.SRP {
 		}
 
 		public override object[] DeserializeArray(SerializedProperty prop) {
-			object[] coll = new object[prop.arraySize];
+			List<object> coll = new List<object>();
+			//object[] coll = new object[prop.arraySize];
 			for(int i = 0; i < prop.arraySize; i++) {
-				coll[i] = prop.GetArrayElementAtIndex(i).objectReferenceValue;
+				var g = prop.GetArrayElementAtIndex(i).objectReferenceValue;
+				if(g != null)
+					coll.Add(g);
+				//coll[i] = prop.GetArrayElementAtIndex(i).objectReferenceValue;
 			}
-			return coll;
+			return coll.ToArray();
 		}
 
 

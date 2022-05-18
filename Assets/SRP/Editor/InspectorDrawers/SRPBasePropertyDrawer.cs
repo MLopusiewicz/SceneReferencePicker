@@ -34,19 +34,19 @@ namespace LoneTower.SRP {
 		}
 
 		protected SRPController GetPicker() {
-			SRPAttribute a = (attribute as SRPAttribute);
-			a.selectType = selectType;
-			SRPTypeParser types = new SRPTypeParser(a);
+			SRPAttribute attr = GetAttribute<SRPAttribute>(prop);
+			attr.selectType = selectType.AssemblyQualifiedName;
+			SRPTypeParser types = new SRPTypeParser(attr);
 
 			serializer = (SerializerBase)Activator.CreateInstance(types.serializer);
-			return new SRPController(types, Deserialize());
+			return new SRPController(attr, Deserialize());
 		}
 
 		protected override void Reset() {
 			base.Reset();
 			if(picker != null) {
 				state = picker.State;
-				picker.Clear();
+				picker.Dispose();
 				picker = null;
 			}
 			prop = null; //forces awake
@@ -58,7 +58,7 @@ namespace LoneTower.SRP {
 					serializer.Serialize(picker.brush.selection[picker.brush.selection.Count - 1], prop);
 				else
 					serializer.Serialize(null, prop);
-				picker.Clear();
+				picker.Dispose();
 				Reset();
 			} else {
 				serializer.SerializeArray(picker.brush.selection.ToArray(), prop.FindPropertyRelative("collection"));
@@ -74,7 +74,7 @@ namespace LoneTower.SRP {
 
 		protected override void OnDestroy() {
 			if(picker != null) {
-				picker.Clear();
+				picker.Dispose();
 				picker = null;
 			}
 		}

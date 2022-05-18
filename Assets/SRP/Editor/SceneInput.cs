@@ -15,16 +15,15 @@ namespace LoneTower.SRP {
 		}
 		static SceneInput instance;
 
-		public bool inputInterception;
+
 		public bool shiftPressed { get; private set; }
 		public bool ctrlPressed { get; private set; }
 		public event Action MouseDown, MouseUp, MousePressing, ShiftDown, ShiftUp, SceneLoop;
 		public event Action CtrlDown, CtrlUp;
 		public event Action<float> MouseScroll;
 		public event Action MouseLoop;
-
-
 		public bool LMBpressed { get; private set; }
+
 
 		Dictionary<KeyCode, Action> keys = new Dictionary<KeyCode, Action>();
 
@@ -34,9 +33,7 @@ namespace LoneTower.SRP {
 		}
 
 		void SceneFunc(SceneView sceneView) {
-			SceneLoop?.Invoke();
-			if(!inputInterception)
-				return;
+			SceneLoop?.Invoke(); 
 			MouseInput(Event.current);
 			shiftPressed = CheckButton(KeyCode.LeftShift, shiftPressed, ShiftDown, ShiftUp, Event.current);
 			ctrlPressed = CheckButton(KeyCode.LeftControl, ctrlPressed, CtrlDown, CtrlUp, Event.current);
@@ -91,16 +88,15 @@ namespace LoneTower.SRP {
 		}
 
 		bool CheckButton(KeyCode key, bool state, Action Down, Action Up, Event e) {
+
 			if(e.type == EventType.KeyDown && Event.current.keyCode == key) {
 				if(!state) {
-
 					Down?.Invoke();
 					return true;
 				}
 			}
 			if(e.type == EventType.KeyUp && Event.current.keyCode == key) {
 				if(state) {
-
 					Up?.Invoke();
 					return false;
 				}

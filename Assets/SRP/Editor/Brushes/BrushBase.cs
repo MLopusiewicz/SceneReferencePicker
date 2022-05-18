@@ -7,7 +7,7 @@ using UnityEngine;
 namespace LoneTower.SRP {
 
 	public abstract class BrushBase {
-		public event Action<object[]> OnStrokeEnd;
+		public event Action<object[]> OnStrokeEnd, OnStroke, OnStrokeStart;
 		public enum brushMode { normal, shift, ctrl }
 		public brushMode mode;
 		public object[] hover { get; private set; }
@@ -42,11 +42,15 @@ namespace LoneTower.SRP {
 			mode = brushMode.normal;
 		}
 
-		protected abstract void StartStroke(object[] t);
-		protected abstract void Stroke(object[] t);
+		protected virtual void StartStroke(object[] t) {
+			OnStroke?.Invoke(t);
+		}
+		protected virtual void Stroke(object[] t) {
+			OnStroke?.Invoke(t);
+		}
+
 		protected virtual void EndStroke(object[] t) {
 			OnStrokeEnd?.Invoke(t);
-			mode = brushMode.normal;
 		}
 
 		private void Follow(object[] obj) {
@@ -54,16 +58,19 @@ namespace LoneTower.SRP {
 		}
 
 		public virtual void Enable() {
+			if(enabled)
+				return;
 			enabled = true;
 			input.Enable();
 			input.OnPressed += StartStroke;
 			input.OnDrag += Stroke;
 			input.OnRelease += EndStroke;
 			input.OnHover += Follow;
-
 		}
 
 		public virtual void Disable() {
+			if(!enabled)
+				return;
 			enabled = false;
 			input.Disable();
 			input.OnPressed -= StartStroke;
@@ -72,11 +79,5 @@ namespace LoneTower.SRP {
 			input.OnHover -= Follow;
 		}
 
-		public void Toggle(bool state) {
-			if(state) {
-				Enable();
-			} else
-				Disable();
-		}
 	}
 }

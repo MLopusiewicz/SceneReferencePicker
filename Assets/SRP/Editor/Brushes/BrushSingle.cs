@@ -7,17 +7,21 @@ namespace LoneTower.SRP {
 
 	public class BrushSingle : BrushBase {
 
+		object[] clicked;
 		public BrushSingle(ScenePickerBase t, List<object> list = null) : base(t, list) {
 
 		}
 
 
 		protected override void StartStroke(object[] obj) {
-
+			base.StartStroke(obj);
+			if(obj != null)
+				base.Stroke(clicked = obj);
 		}
 
 		protected override void Stroke(object[] t) {
-
+			if(clicked != null)
+				base.Stroke(clicked);
 		}
 		protected override void EndStroke(object[] a) {
 			if(a == null)

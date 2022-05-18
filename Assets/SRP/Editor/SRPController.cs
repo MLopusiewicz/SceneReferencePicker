@@ -5,15 +5,16 @@ using UnityEditor;
 using UnityEngine;
 
 namespace LoneTower.SRP {
-	public class SRPController {
+	public class SRPController : IDisposable {
 
 		public BrushBase brush;
 		public DrawerBase drawer;
 
 		VisibilityButton visibility;
-		PaintButton paintButton; 
-	
-		public SRPController(SRPTypeParser types, object[] arr = null) {
+		PaintButton paintButton;
+
+		public SRPController(SRPAttribute attr, object[] arr = null) {
+			SRPTypeParser types = new SRPTypeParser(attr);
 			List<object> c = new List<object>();
 			if(arr != null)
 				c.AddRange(arr);
@@ -35,8 +36,8 @@ namespace LoneTower.SRP {
 
 			brush.Disable();
 			drawer.Hide();
-		}
 
+		}
 		void VisibilityOn() {
 			drawer.Hide();
 			brush.Disable();
@@ -72,16 +73,19 @@ namespace LoneTower.SRP {
 			return position;
 		}
 
-		public void Clear() {
+		public void Dispose() {
 			brush.Disable();
-			drawer.Clear();
+			drawer.Dispose();
 		}
 
 		public State State {
 			get { return new State(visibility.state, brush.enabled); }
 			set {
 				drawer.showSelection = !value.visible;
-				brush.Toggle(value.enabled);
+				if(value.enabled) {
+					brush.Enable();
+				} else
+					brush.Disable();
 			}
 		}
 

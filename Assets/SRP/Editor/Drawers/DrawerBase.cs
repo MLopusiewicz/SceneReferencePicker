@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace LoneTower.SRP {
-	public abstract class DrawerBase {
+	public abstract class DrawerBase : IDisposable {
 
 		public static SelectionBank<Color> ColorBank {
 			get {
@@ -49,7 +49,7 @@ namespace LoneTower.SRP {
 			showSelection = true;
 		}
 
-		public void Clear() {
+		public void Dispose() {
 			SceneView.duringSceneGui -= SceneDraw;
 			showSelection = false;
 			ColorBank.Free(color);
@@ -61,19 +61,19 @@ namespace LoneTower.SRP {
 				Handles.color = SRPSettings.MarkColor;
 				DrawMarks(drawTarget.Marks);
 			}
-
-			if(!showSelection) {
-				return;
-			}
-
-			Handles.color = color;
-			DrawSelection(drawTarget.Selection);
 			if(showHandle) {
 				DrawCoursor(MouseRay());
 				if(drawTarget.IsHovering) {
 					DrawBrush(drawTarget.Hover);
 				}
 			}
+
+			if(showSelection) {
+				Handles.color = color;
+				DrawSelection(drawTarget.Selection);
+			}
+
+
 		}
 
 		protected abstract void DrawCoursor(Ray mouseRay);

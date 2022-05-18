@@ -38,29 +38,31 @@ namespace LoneTower.SRP {
 						lastModified.Add(a);
 					}
 				}
-
+			base.Stroke(lastModified.ToArray());
 		}
 
 		protected override void Stroke(object[] t) {
 			if(t == null)
 				return;
+			List<object> change = new List<object>();
 			if(subtractive) {
 				foreach(var a in t) {
-					if(selection.Remove(t)) {
-						lastModified.Add(a);
+					if(selection.Remove(a)) {
+						change.Add(a);
 					}
 				}
 			} else
 				foreach(var a in t) {
 					if(!selection.Contains(a)) {
 						selection.Add(a);
-						lastModified.Add(a);
+						change.Add(a);
 					}
 				}
+
+			lastModified.AddRange(change);
+			base.Stroke(change.ToArray());
 		}
 		protected override void EndStroke(object[] t) {
-			foreach(var a in lastModified)
-				Debug.Log(a.ToString());
 			base.EndStroke(lastModified.ToArray());
 		}
 	}

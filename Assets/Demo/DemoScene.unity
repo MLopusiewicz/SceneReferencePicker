@@ -856,15 +856,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultBrush:
-    collection: []
+    collection:
+    - {fileID: 1865125215}
+    - {fileID: 554307003}
+    - {fileID: 806303367}
+    - {fileID: 314079516}
   component: {fileID: 0}
   pathPick:
-    collection: []
+    collection:
+    - {fileID: 34791974}
+    - {fileID: 806303367}
+    - {fileID: 554307003}
   topDownSingle: {fileID: 0}
   topDownasdfas:
     collection:
-    - {fileID: 1865125215}
     - {fileID: 34791974}
+    - {fileID: 806303367}
+    - {fileID: 314079516}
     - {fileID: 554307003}
   pick:
     collection: []

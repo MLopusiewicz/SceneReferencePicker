@@ -14,20 +14,17 @@ namespace LoneTower.SRP {
 		public ScenePickerBase(Type t) {
 
 		}
-		public virtual void Enable() {
-			SceneInput.Instance.inputInterception = true;
+		public virtual void Enable() { 
 			SceneInput.Instance.MouseDown += Click;
 			SceneInput.Instance.MousePressing += Pressing;
 			SceneInput.Instance.MouseUp += Release;
 			SceneInput.Instance.MouseLoop += Update;
 		}
 
-		public virtual void Disable() {
-			SceneInput.Instance.inputInterception = false;
+		public virtual void Disable() { 
 			SceneInput.Instance.MouseDown -= Click;
 			SceneInput.Instance.MousePressing -= Pressing;
-			SceneInput.Instance.MouseUp -= Release;
-
+			SceneInput.Instance.MouseUp -= Release; 
 			SceneInput.Instance.MouseLoop -= Update;
 		}
 
@@ -49,7 +46,7 @@ namespace LoneTower.SRP {
 			object[] v = GetSelection();
 			OnHover?.Invoke(v);
 		}
-		
+
 		~ScenePickerBase() {
 			Disable();
 		}

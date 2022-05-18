@@ -15,6 +15,7 @@ namespace LoneTower.SRP {
 		}
 
 		protected override void StartStroke(object[] a) {
+			base.StartStroke(a);
 			drag = false;
 
 			if(a == null)
