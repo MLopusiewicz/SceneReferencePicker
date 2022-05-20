@@ -6,16 +6,18 @@ using UnityEditor;
 using UnityEngine;
 
 namespace LoneTower.SRP {
-	public class ComponentPicker : ScenePickerBase {
+	public class InterfacePicker : ScenePickerBase {
 		public Type t { get; private set; }
-		public ComponentPicker(Type t) : base(t) {
+		public InterfacePicker(Type t) : base(t) {
 			this.t = t;
-			Transform[] g = GameObject.FindObjectsOfType(t).Select(x => ((Component)x).transform).ToArray();
 
-			List<object> s = new List<object>();
 
-			s.AddRange(g);
-			possible = s.ToArray();
+			//Transform[] g = GameObject.FindObjectsOfType(t).Select(x => ((IMonoBehaviourBase)x).transform).ToArray();
+
+			//List<object> s = new List<object>();
+
+			//s.AddRange(g);
+			//possible = s.ToArray();
 
 		}
 
@@ -25,13 +27,15 @@ namespace LoneTower.SRP {
 			if(SceneView.mouseOverWindow.ToString() == " (UnityEditor.SceneView)") {
 				GameObject go = HandleUtility.PickGameObject(Event.current.mousePosition, false);
 				if(go != null) {
-					Component cc = go.GetComponentInParent(t);
-					if(cc != null)
-						return new object[] { cc };
+					IMonoBehaviourBase gg = (IMonoBehaviourBase)go.GetComponentInParent(t);
+					if(gg != null)
+						return new object[] { gg as Component };
 				}
 			}
 			return null;
 		}
 
 	}
+
+
 }

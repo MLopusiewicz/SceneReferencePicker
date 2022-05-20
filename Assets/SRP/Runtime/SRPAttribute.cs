@@ -14,7 +14,7 @@ namespace LoneTower.SRP {
 		public string drawer;
 		public string picker;
 		public string serializer;
-		public string selectType;
+		public Type selectType;
 
 		public string[] GetSettings() { return new string[] { brush, parser, drawer, picker, serializer }; }
 
@@ -39,6 +39,14 @@ namespace LoneTower.SRP {
 			drawer = "LoneTower.SRP.DrawerGeneric";
 			picker = "LoneTower.SRP.ComponentPicker";
 			serializer = "LoneTower.SRP.ComponentSerializer";
+		}
+		public SRPAttribute(Type t) {
+			brush = "LoneTower.SRP.BrushMain";
+			parser = "LoneTower.SRP.ParserTransform";
+			drawer = "LoneTower.SRP.DrawerGeneric";
+			picker = "LoneTower.SRP.ComponentPicker";
+			serializer = "LoneTower.SRP.ComponentSerializer";
+			selectType = t;
 		}
 	}
 

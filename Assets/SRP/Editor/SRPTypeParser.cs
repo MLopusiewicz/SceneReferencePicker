@@ -28,9 +28,7 @@ namespace LoneTower.SRP {
 			this.drawer = TryType(attr.drawer, typeof(DrawerBase), typeof(DrawerGeneric));
 			this.sceneInput = TryType(attr.picker, typeof(ScenePickerBase), typeof(ComponentPicker));
 			this.serializer = TryType(attr.serializer, typeof(SerializerBase), typeof(ComponentSerializer));
-			this.selectType = Type.GetType(attr.selectType);
-			if(selectType == null)
-				Debug.LogError("no type in:" + attr.GetType().Name);
+			selectType = attr.selectType;
 		}
 
 		static Type TryType(string objType, Type expected, Type fallBack) {

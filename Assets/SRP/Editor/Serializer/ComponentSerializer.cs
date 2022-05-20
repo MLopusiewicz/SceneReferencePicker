@@ -67,9 +67,7 @@ namespace LoneTower.SRP {
 			}
 			collection.serializedObject.ApplyModifiedProperties();
 		}
-
-
-
+		 
 		static bool CheckType(Type t, Type g) {
 			while(t != typeof(object)) {
 				if(t == g)

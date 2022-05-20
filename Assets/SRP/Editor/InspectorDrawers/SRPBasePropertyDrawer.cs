@@ -35,7 +35,8 @@ namespace LoneTower.SRP {
 
 		protected SRPController GetPicker() {
 			SRPAttribute attr = GetAttribute<SRPAttribute>(prop);
-			attr.selectType = selectType.AssemblyQualifiedName;
+			if(attr.selectType == null)
+				attr.selectType = selectType;
 			SRPTypeParser types = new SRPTypeParser(attr);
 
 			serializer = (SerializerBase)Activator.CreateInstance(types.serializer);
