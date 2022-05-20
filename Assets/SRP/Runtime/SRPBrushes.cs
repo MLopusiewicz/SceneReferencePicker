@@ -49,12 +49,38 @@ namespace LoneTower.SRP {
 
 	public class SRPInterface : SRPAttribute {
 		public SRPInterface() : base(
+			"LoneTower.SRP.BrushSingle",
+			"LoneTower.SRP.ParserTransform",
+			"LoneTower.SRP.DrawerGeneric",
+			"LoneTower.SRP.InterfacePicker",
+			"LoneTower.SRP.ComponentSerializer") {
+			selectType = typeof(IMonoBehaviourBase);
+		}
+		public SRPInterface(Type t) : base(
+		   "LoneTower.SRP.BrushSingle",
+		   "LoneTower.SRP.ParserTransform",
+		   "LoneTower.SRP.DrawerGeneric",
+		   "LoneTower.SRP.InterfacePicker",
+		   "LoneTower.SRP.ComponentSerializer") {
+			selectType = t;
+		}
+	}
+	public class SRPInterfaces : SRPAttribute {
+		public SRPInterfaces() : base(
 			"LoneTower.SRP.BrushMain",
 			"LoneTower.SRP.ParserTransform",
 			"LoneTower.SRP.DrawerGeneric",
 			"LoneTower.SRP.InterfacePicker",
 			"LoneTower.SRP.ComponentSerializer") {
 			selectType = typeof(IMonoBehaviourBase);
+		}
+		public SRPInterfaces(Type t) : base(
+		   "LoneTower.SRP.BrushMain",
+		   "LoneTower.SRP.ParserTransform",
+		   "LoneTower.SRP.DrawerGeneric",
+		   "LoneTower.SRP.InterfacePicker",
+		   "LoneTower.SRP.ComponentSerializer") {
+			selectType = t;
 		}
 	}
 }

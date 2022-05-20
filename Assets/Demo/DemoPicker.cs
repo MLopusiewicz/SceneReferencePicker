@@ -1,4 +1,4 @@
-using LoneTower.SRP; 
+using LoneTower.SRP;
 using UnityEngine;
 
 public class DemoPicker : MonoBehaviour {
@@ -19,13 +19,19 @@ public class DemoPicker : MonoBehaviour {
 	[SRPTopDown]
 	public PickableList<DemoComponent> topDownasdfas;
 
-	[SRP(	"LoneTower.SRP.BrushPath",
-			"LoneTower.SRP.ParserTransform", 
-			"LoneTower.SRP.DrawerPath", 
-			"LoneTower.SRP.ComponentPicker", 
+	[SRP("LoneTower.SRP.BrushPath",
+			"LoneTower.SRP.ParserTransform",
+			"LoneTower.SRP.DrawerPath",
+			"LoneTower.SRP.ComponentPicker",
 			"LoneTower.SRP.ComponentSerializer")]
 	public PickableList<DemoComponent> pick;
 
+
+	[SRPInterface(typeof(IDemoInterface))]
+	public Component interfac;
+
+	[SRPInterfaces(typeof(IDemoInterface))]
+	public PickableList<Component> interfaces;
 }
 
 

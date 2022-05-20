@@ -10,7 +10,7 @@ namespace LoneTower.SRP {
 		public Type t { get; private set; }
 		public InterfacePicker(Type t) : base(t) {
 			this.t = t;
-
+			
 
 			//Transform[] g = GameObject.FindObjectsOfType(t).Select(x => ((IMonoBehaviourBase)x).transform).ToArray();
 
