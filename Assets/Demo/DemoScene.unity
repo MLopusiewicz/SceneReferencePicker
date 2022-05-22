@@ -985,6 +985,12 @@ MonoBehaviour:
   pick:
     collection: []
   interfac: {fileID: 1865125215}
+  interfaces:
+    collection:
+    - {fileID: 314079516}
+    - {fileID: 34791974}
+    - {fileID: 806303367}
+    - {fileID: 554307003}
 --- !u!4 &1095029104
 Transform:
   m_ObjectHideFlags: 0

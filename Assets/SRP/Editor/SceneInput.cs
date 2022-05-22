@@ -33,7 +33,9 @@ namespace LoneTower.SRP {
 		}
 
 		void SceneFunc(SceneView sceneView) {
-			SceneLoop?.Invoke(); 
+			SceneLoop?.Invoke();
+			if(MouseLoop == null)
+				return;
 			MouseInput(Event.current);
 			shiftPressed = CheckButton(KeyCode.LeftShift, shiftPressed, ShiftDown, ShiftUp, Event.current);
 			ctrlPressed = CheckButton(KeyCode.LeftControl, ctrlPressed, CtrlDown, CtrlUp, Event.current);

@@ -54,6 +54,7 @@ namespace LoneTower.SRP {
 					}
 				}
 			}
+			Debug.LogWarning($"<b><color=#ED1E79>[SRP]</color></b> SRPAttribute not found <color=#4ec9b0>{property.name}</color>");
 			return new T();
 		}
 	}

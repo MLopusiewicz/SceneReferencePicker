@@ -1,4 +1,4 @@
-### 1.0.0 
+### 1.0.0
 base
 ### 1.0.1 
 - setting path changed
@@ -11,7 +11,7 @@ base
 - listDrawer -> pickableList
 - arrayDrawer -> pickableArray
 - added componentRectPicker
-- serializer extracted
+- serializer extracted 
 
 ### 3.0.0
 - better missing type logging
@@ -20,5 +20,10 @@ base
 - color bank fix 
 - Logic renamed to Brush
 
-#3.0.1
+### 3.0.1
 - OnStrokeEnd passes object[]
+
+### 3.1.0
+- Interface support added (SRPInterface attribute)
+- works on private [Serialize Field]
+- minor bug fixes

@@ -40,7 +40,6 @@ namespace LoneTower.SRP {
 			} else {
 				if(fallBack != null)
 					Debug.LogWarning($"<b><color=#ED1E79>[SRP]</color></b> Wrong type <color=#4ec9b0>{objType}</color>. Expected <color=#4ec9b0>{expected.Name}</color>. Falling back to: <color=#4ec9b0>{fallBack.Name} </color>");
-
 				return fallBack;
 			}
 		}

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace LoneTower.SRP {
 	public class ComponentSerializer : SerializerBase {
-
+		public ComponentSerializer(Type t) : base(t) { }
 		public override void Serialize(object o, SerializedProperty prop) {
 			if(o == null) {
 				Serialize((Component)null, prop);
@@ -67,7 +67,7 @@ namespace LoneTower.SRP {
 			}
 			collection.serializedObject.ApplyModifiedProperties();
 		}
-		 
+
 		static bool CheckType(Type t, Type g) {
 			while(t != typeof(object)) {
 				if(t == g)

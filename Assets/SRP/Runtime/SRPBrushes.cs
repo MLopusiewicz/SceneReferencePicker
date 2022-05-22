@@ -71,7 +71,7 @@ namespace LoneTower.SRP {
 			"LoneTower.SRP.ParserTransform",
 			"LoneTower.SRP.DrawerGeneric",
 			"LoneTower.SRP.InterfacePicker",
-			"LoneTower.SRP.ComponentSerializer") {
+			"LoneTower.SRP.InterfaceSerializer") {
 			selectType = typeof(IMonoBehaviourBase);
 		}
 		public SRPInterfaces(Type t) : base(
@@ -79,7 +79,7 @@ namespace LoneTower.SRP {
 		   "LoneTower.SRP.ParserTransform",
 		   "LoneTower.SRP.DrawerGeneric",
 		   "LoneTower.SRP.InterfacePicker",
-		   "LoneTower.SRP.ComponentSerializer") {
+		   "LoneTower.SRP.InterfaceSerializer") {
 			selectType = t;
 		}
 	}

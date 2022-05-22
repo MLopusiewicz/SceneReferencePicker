@@ -34,12 +34,12 @@ namespace LoneTower.SRP {
 		}
 
 		protected SRPController GetPicker() {
-			SRPAttribute attr = GetAttribute<SRPAttribute>(prop);
+			SRPAttribute attr = (SRPAttribute)attribute;
+			//SRPAttribute attr = GetAttribute<SRPAttribute>(prop);
 			if(attr.selectType == null)
 				attr.selectType = selectType;
 			SRPTypeParser types = new SRPTypeParser(attr);
-
-			serializer = (SerializerBase)Activator.CreateInstance(types.serializer);
+			serializer = (SerializerBase)Activator.CreateInstance(types.serializer, types.selectType);
 			return new SRPController(attr, Deserialize());
 		}
 
