@@ -18,14 +18,10 @@ namespace LoneTower.SRP {
 			base.StartStroke(a);
 			drag = false;
 
-			if(a == null)
+			if(a.Length == 0)
 				return;
 
 			object t = a[0];
-
-			if(t == null)
-				return;
-
 			if(mode == brushMode.shift) {
 				selection.Remove(t);
 				return;
@@ -48,13 +44,13 @@ namespace LoneTower.SRP {
 		}
 
 		protected override void Stroke(object[] a) {
-			if(a == null)
+			base.Stroke(a);
+
+			if(a.Length == 0)
 				return;
+
 
 			object t = a[0];
-
-			if(t == null)
-				return;
 
 			if(mode == brushMode.shift) {
 				selection.Remove(t);
@@ -77,6 +73,7 @@ namespace LoneTower.SRP {
 		}
 
 		protected override void EndStroke(object[] a) {
+			base.EndStroke(a);
 			if(a == null)
 				return;
 
@@ -94,7 +91,7 @@ namespace LoneTower.SRP {
 			if(mode == brushMode.shift)
 				selection.Remove(t);
 
-			base.EndStroke(new object[] { t });
+
 		}
 	}
 }

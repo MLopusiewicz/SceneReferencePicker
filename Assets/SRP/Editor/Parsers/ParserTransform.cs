@@ -6,7 +6,7 @@ using UnityEngine;
 namespace LoneTower.SRP {
 	public class ParserTransform : ParserBase {
 
-		public ParserTransform(BrushBase picker) : base(picker) {
+		public ParserTransform(BrushBase brush) : base(brush) {
 		}
 
 		protected override Vector3 GetPos(object t) {

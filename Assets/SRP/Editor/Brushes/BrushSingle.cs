@@ -14,34 +14,22 @@ namespace LoneTower.SRP {
 
 
 		protected override void StartStroke(object[] obj) {
-			base.StartStroke(obj);
-			if(obj != null)
-				base.Stroke(clicked = obj);
+			base.StartStroke(clicked = obj);
 		}
 
 		protected override void Stroke(object[] t) {
-			if(clicked != null)
-				base.Stroke(clicked);
+			base.Stroke(clicked);
 		}
 		protected override void EndStroke(object[] a) {
-			if(a == null)
+			base.EndStroke(clicked);
+		}
+		protected override void SetHover(object[] obj) {
+			if(stroking) {
+				hover = clicked;
 				return;
-
-			object t = a[0];
-
-			if(t == null)
-				return;
-
-			if(selection.Contains(t)) {
-				selection.Clear();
-				Disable();
-				base.EndStroke(null);
-			} else {
-				selection.Clear();
-				selection.Add(t);
-				Disable();
-				base.EndStroke(new object[] { t });
 			}
+			base.SetHover(obj);
+
 		}
 	}
 

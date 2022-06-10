@@ -62,7 +62,9 @@ namespace LoneTower.SRP {
 		}
 
 		void MouseInput(Event e) {
-			HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));//disables LBM 
+			if(MouseDown != null)
+				HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));//disables LBM 
+
 			if(MouseScroll != null)
 				if(e.type == EventType.ScrollWheel) {
 					MouseScroll?.Invoke(e.delta.y);

@@ -12,7 +12,7 @@ namespace LoneTower.SRP {
 			this.picker = picker;
 		}
 
-		public bool IsHovering { get { return picker.hover != null; } }
+		public bool IsHovering { get { return picker.hover.Length > 0; } }
 
 		public brushMode mode { get { return picker.mode; } }
 

@@ -30,8 +30,8 @@ namespace LoneTower.SRP {
 
 		public DrawerBase() {
 			SceneView.duringSceneGui += SceneDraw;
-
 			color = ColorBank.GetClosest(0);
+
 		}
 
 		~DrawerBase() {
@@ -73,7 +73,7 @@ namespace LoneTower.SRP {
 				DrawSelection(drawTarget.Selection);
 			}
 
-
+			HandleUtility.Repaint();
 		}
 
 		protected abstract void DrawCoursor(Ray mouseRay);

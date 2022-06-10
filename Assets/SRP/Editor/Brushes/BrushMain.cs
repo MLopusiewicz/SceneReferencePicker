@@ -22,9 +22,6 @@ namespace LoneTower.SRP {
 			} else
 				subtractive = false;
 
-			if(t == null)
-				return;
-
 			if(subtractive) {
 				foreach(var a in t) {
 					if(selection.Remove(a)) {
@@ -38,12 +35,12 @@ namespace LoneTower.SRP {
 						lastModified.Add(a);
 					}
 				}
-			base.Stroke(lastModified.ToArray());
+
+			base.StartStroke(lastModified.ToArray());
 		}
 
 		protected override void Stroke(object[] t) {
-			if(t == null)
-				return;
+			
 			List<object> change = new List<object>();
 			if(subtractive) {
 				foreach(var a in t) {

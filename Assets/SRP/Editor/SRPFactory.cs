@@ -4,30 +4,32 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 namespace LoneTower.SRP {
-	public class SRPTypeParser {
+	public class SRPFactory
+		{
 
 
-		public Type brush;
-		public Type parser;
-		public Type drawer;
-		public Type sceneInput;
-		public Type selectType;
-		public Type serializer;
+		Type brush;
+		Type parser;
+		Type drawer;
+		Type sceneInput;
+		Type selectType;
+		public static SerializerBase GetSerializer(SRPAttribute atr) {
+			Type g = TryType(atr.serializer, typeof(SerializerBase), typeof(ComponentSerializer));
+			return (SerializerBase)Activator.CreateInstance(g, atr.selectType);
+		}
 
-		public SRPTypeParser(string brush, string parser, string drawer, string picker, string serializer) {
+		public SRPFactory(string brush, string parser, string drawer, string picker, string serializer) {
 			this.brush = TryType(brush, typeof(BrushBase), typeof(BrushMain));
 			this.parser = TryType(parser, typeof(ParserBase), typeof(ParserTransform));
 			this.drawer = TryType(drawer, typeof(DrawerBase), typeof(DrawerGeneric));
 			this.sceneInput = TryType(picker, typeof(ScenePickerBase), typeof(ComponentPicker));
-			this.serializer = TryType(serializer, typeof(SerializerBase), typeof(ComponentSerializer));
 		}
 
-		public SRPTypeParser(SRPAttribute attr) {
+		public SRPFactory(SRPAttribute attr) {
 			this.brush = TryType(attr.brush, typeof(BrushBase), typeof(BrushMain));
 			this.parser = TryType(attr.parser, typeof(ParserBase), typeof(ParserTransform));
 			this.drawer = TryType(attr.drawer, typeof(DrawerBase), typeof(DrawerGeneric));
 			this.sceneInput = TryType(attr.picker, typeof(ScenePickerBase), typeof(ComponentPicker));
-			this.serializer = TryType(attr.serializer, typeof(SerializerBase), typeof(ComponentSerializer));
 			selectType = attr.selectType;
 		}
 
@@ -55,5 +57,17 @@ namespace LoneTower.SRP {
 			return false;
 		}
 
+		public ScenePickerBase GetPicker() {
+			return (ScenePickerBase)Activator.CreateInstance(sceneInput, new object[] { selectType });
+		}
+		public BrushBase GetBrush(List<object> c) {
+			return (BrushBase)Activator.CreateInstance(brush, new object[] { GetPicker(), c });
+		}
+		public DrawerBase GetDrawer(BrushBase brush) {
+			DrawerBase t = (DrawerBase)Activator.CreateInstance(drawer);
+			ParserBase _p = (ParserBase)Activator.CreateInstance(parser, brush);
+			t.drawTarget = _p;
+			return t;
+		}
 	}
 }

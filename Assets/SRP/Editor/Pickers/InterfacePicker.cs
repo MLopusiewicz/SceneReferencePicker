@@ -23,7 +23,7 @@ namespace LoneTower.SRP {
 
 		protected override object[] GetSelection() {
 			if(SceneView.mouseOverWindow == null)
-				return null;
+				return new object[] { };
 			if(SceneView.mouseOverWindow.ToString() == " (UnityEditor.SceneView)") {
 				GameObject go = HandleUtility.PickGameObject(Event.current.mousePosition, false);
 				if(go != null) {
@@ -32,7 +32,7 @@ namespace LoneTower.SRP {
 						return new object[] { gg as Component };
 				}
 			}
-			return null;
+			return new object[] { };
 		}
 
 	}

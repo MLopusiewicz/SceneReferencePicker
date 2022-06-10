@@ -11,9 +11,10 @@ namespace LoneTower.SRP {
 			EditorGUI.BeginProperty(position, label, property);
 			if(picker != null) {
 				if(isSingle)
-					position = picker.InspectorDraw(position, prop.displayName);
+					position = srpDrawer.InspectorDraw(position, prop.displayName);
 				else
-					position = picker.InspectorDraw(position, $"{prop.displayName} ({picker.brush.selection.Count})");
+					position = srpDrawer.InspectorDraw(position, $"{prop.displayName} ({picker.SelectionCount})");
+
 			}
 			if(isSingle) {
 				EditorGUI.BeginChangeCheck();
@@ -22,8 +23,8 @@ namespace LoneTower.SRP {
 					position.width -= 5;
 					EditorGUI.ObjectField(position, prop, new GUIContent(""));
 				} else {
-					if(picker.brush.selection.Count > 0)
-						EditorGUI.LabelField(position, picker.brush.selection[0].ToString());
+					if(picker.SelectionCount > 0)
+						EditorGUI.LabelField(position, picker.SelectionCount.ToString());
 					else
 						EditorGUI.LabelField(position, selectType.Name);
 				}

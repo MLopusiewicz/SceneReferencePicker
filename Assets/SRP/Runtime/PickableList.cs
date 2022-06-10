@@ -39,7 +39,9 @@ namespace LoneTower.SRP {
 		public void AddRange(List<T> arr) {
 			collection.AddRange(arr);
 		}
-
+		public List<T> GetList() {
+			return collection;
+		}
 
 	}
 

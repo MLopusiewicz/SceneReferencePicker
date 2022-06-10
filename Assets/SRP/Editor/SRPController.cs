@@ -7,86 +7,108 @@ using UnityEngine;
 namespace LoneTower.SRP {
 	public class SRPController : IDisposable {
 
-		public BrushBase brush;
-		public DrawerBase drawer;
+		public IStroke brush { get { return _brush; } }
 
-		VisibilityButton visibility;
-		PaintButton paintButton;
+		public DrawerBase drawer;
+		BrushBase _brush;
+
+		public object[] GetSelection() {
+			return _brush.selection.ToArray();
+		}
+		public void SetSelection(List<object> o) {
+			_brush.selection = o;
+		}
+		public int SelectionCount { get { return _brush.selection.Count; } }
 
 		public SRPController(SRPAttribute attr, object[] arr = null) {
-			SRPTypeParser types = new SRPTypeParser(attr);
+			SRPFactory types = new SRPFactory(attr);
 			List<object> c = new List<object>();
 			if(arr != null)
 				c.AddRange(arr);
-			ScenePickerBase pi = (ScenePickerBase)Activator.CreateInstance(types.sceneInput, new object[] { types.selectType });
-			brush = (BrushBase)Activator.CreateInstance(types.brush, new object[] { pi, c });
-			drawer = (DrawerBase)Activator.CreateInstance(types.drawer);
-			ParserBase parser = (ParserBase)Activator.CreateInstance(types.parser, brush);
-			drawer.drawTarget = parser;
 
-			visibility = new VisibilityButton();
-			paintButton = new PaintButton();
+			_brush = types.GetBrush(c);
+			drawer = types.GetDrawer(_brush);
 
-			visibility.OnEnable += VisibilityOn;
-			visibility.OnDisable += VisibilityOff;
-
-
-			paintButton.OnEnable += PaintOn;
-			paintButton.OnDisable += PaintOff;
-
-			brush.Disable();
+			_brush.Disable();
 			drawer.Hide();
-
-		}
-		void VisibilityOn() {
-			drawer.Hide();
-			brush.Disable();
-			drawer.showMarks = false;
 		}
 
-		void VisibilityOff() {
+		public void VisibilityOn() {
 			drawer.Show();
 		}
 
-		void PaintOn() {
-			brush.Enable();
+		public void VisibilityOff() {
+			PaintOff();
+			drawer.Hide();
+		}
+
+		public void PaintOn() {
+			_brush.Enable();
 			drawer.Show();
 			drawer.showMarks = true;
 			drawer.showHandle = true;
 		}
 
-		void PaintOff() {
-			brush.Disable();
+		public void PaintOff() {
+			_brush.Disable();
 			drawer.showMarks = false;
 			drawer.showHandle = false;
 		}
 
-		public Rect InspectorDraw(Rect position, string label) {
-			visibility.state = !drawer.showSelection;
-			paintButton.state = brush.enabled;
-			position = EditorGUI.PrefixLabel(position, UnityEngine.GUIUtility.GetControlID(FocusType.Passive), new GUIContent(label));
-
-			GUITools.ColorField(position, drawer.color);
-			position = paintButton.PropertyDraw(position);
-			position = visibility.PropertyDraw(position);
-
-			return position;
+		public void PaintToggle(bool obj) {
+			if(obj)
+				PaintOn();
+			else
+				PaintOff();
 		}
 
 		public void Dispose() {
-			brush.Disable();
+			_brush.Disable();
 			drawer.Dispose();
 		}
 
 		public State State {
-			get { return new State(visibility.state, brush.enabled); }
+			get { return new State(drawer.showSelection, _brush.enabled); }
 			set {
 				drawer.showSelection = !value.visible;
 				if(value.enabled) {
-					brush.Enable();
+					_brush.Enable();
 				} else
-					brush.Disable();
+					_brush.Disable();
 			}
+		}
+
+	}
+
+
+	public class SRPGUIDrawer {
+		SRPController srp;
+		public SRPGUIDrawer(SRPController srp) {
+			this.srp = srp;
+
+			visibility = new VisibilityButton();
+			paintButton = new PaintButton();
+
+			visibility.OnEnable += srp.VisibilityOn;
+			visibility.OnDisable += srp.VisibilityOff;
+
+
+			paintButton.OnEnable += srp.PaintOn;
+			paintButton.OnDisable += srp.PaintOff;
+
+		}
+		VisibilityButton visibility;
+		PaintButton paintButton; 
+		public Rect InspectorDraw(Rect position, string label) {
+			visibility.state = !srp.State.visible;
+			paintButton.state = srp.State.enabled;
+			position = EditorGUI.PrefixLabel(position, UnityEngine.GUIUtility.GetControlID(FocusType.Passive), new GUIContent(label));
+
+			GUITools.ColorField(position, srp.drawer.color);
+			position = paintButton.PropertyDraw(position);
+			position = visibility.PropertyDraw(position);
+
+			return position;
 		}
 
 	}

@@ -38,7 +38,7 @@ namespace LoneTower.SRP {
 		protected override object[] GetSelection() {
 			{
 				if(SceneView.mouseOverWindow == null)
-					return null;
+					return new object[] { };
 				if(SceneView.mouseOverWindow.ToString() == " (UnityEditor.SceneView)") {
 					GameObject[] go = HandleUtility.PickRectObjects(GetSelectionRect(startpos, Event.current.mousePosition), false);
 
@@ -52,7 +52,7 @@ namespace LoneTower.SRP {
 					}
 					return objs.ToArray();
 				}
-				return null;
+				return new object[] { };
 			}
 		}
 		Rect GetSelectionRect(Vector2 start, Vector2 current) {

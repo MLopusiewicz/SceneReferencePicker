@@ -6,23 +6,24 @@ using UnityEngine;
 
 namespace LoneTower.SRP {
 
-	public abstract class BrushBase {
+	public abstract class BrushBase : IStroke {
 		public event Action<object[]> OnStrokeEnd, OnStroke, OnStrokeStart;
 		public enum brushMode { normal, shift, ctrl }
-		public brushMode mode;
-		public object[] hover { get; private set; }
-
+		public brushMode mode { get; protected set; }
+		public object[] hover { get; protected set; }
 		public bool enabled { get; private set; }
 
 		public List<object> selection;
-		public ScenePickerBase input;
 
+		public ScenePickerBase input;
+		public bool stroking { get; private set; }
 		public BrushBase(ScenePickerBase input, List<object> list = null) {
 			if(list == null)
 				selection = new List<object>();
 			selection = list;
 			this.input = input;
-
+			hover = new object[] { };
+			stroking = false;
 			SceneInput.Instance.ShiftDown += ShiftMode;
 			SceneInput.Instance.ShiftUp += NormalMode;
 
@@ -43,7 +44,8 @@ namespace LoneTower.SRP {
 		}
 
 		protected virtual void StartStroke(object[] t) {
-			OnStroke?.Invoke(t);
+			OnStrokeStart?.Invoke(t);
+			stroking = true;
 		}
 		protected virtual void Stroke(object[] t) {
 			OnStroke?.Invoke(t);
@@ -51,9 +53,10 @@ namespace LoneTower.SRP {
 
 		protected virtual void EndStroke(object[] t) {
 			OnStrokeEnd?.Invoke(t);
+			stroking = false;
 		}
 
-		private void Follow(object[] obj) {
+		protected virtual void SetHover(object[] obj) {
 			hover = obj;
 		}
 
@@ -65,7 +68,7 @@ namespace LoneTower.SRP {
 			input.OnPressed += StartStroke;
 			input.OnDrag += Stroke;
 			input.OnRelease += EndStroke;
-			input.OnHover += Follow;
+			input.OnHover += SetHover;
 		}
 
 		public virtual void Disable() {
@@ -76,7 +79,7 @@ namespace LoneTower.SRP {
 			input.OnPressed -= StartStroke;
 			input.OnDrag -= Stroke;
 			input.OnRelease -= EndStroke;
-			input.OnHover -= Follow;
+			input.OnHover -= SetHover;
 		}
 
 	}

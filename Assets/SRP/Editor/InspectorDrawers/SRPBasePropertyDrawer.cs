@@ -13,6 +13,7 @@ namespace LoneTower.SRP {
 		State? state;
 		protected bool isSingle;
 		protected Type selectType;
+		protected SRPGUIDrawer srpDrawer;
 		protected override void Awake() {
 			if(fieldInfo.FieldType.IsGenericType) {
 				if(fieldInfo.FieldType.GetGenericTypeDefinition() == typeof(PickableArray<>) || fieldInfo.FieldType.GetGenericTypeDefinition() == typeof(PickableList<>)) {
@@ -26,6 +27,7 @@ namespace LoneTower.SRP {
 			}
 
 			picker = GetPicker();
+			srpDrawer = new SRPGUIDrawer(picker);
 			picker.brush.OnStrokeEnd += Serialize;
 			if(state != null)
 				picker.State = state.Value;
@@ -35,11 +37,9 @@ namespace LoneTower.SRP {
 
 		protected SRPController GetPicker() {
 			SRPAttribute attr = (SRPAttribute)attribute;
-			//SRPAttribute attr = GetAttribute<SRPAttribute>(prop);
 			if(attr.selectType == null)
 				attr.selectType = selectType;
-			SRPTypeParser types = new SRPTypeParser(attr);
-			serializer = (SerializerBase)Activator.CreateInstance(types.serializer, types.selectType);
+			serializer = SRPFactory.GetSerializer(attr);
 			return new SRPController(attr, Deserialize());
 		}
 
@@ -54,15 +54,16 @@ namespace LoneTower.SRP {
 		}
 
 		protected void Serialize(object[] t) {
+			var selection = picker.GetSelection();
 			if(isSingle) {
-				if(picker.brush.selection.Count > 0)
-					serializer.Serialize(picker.brush.selection[picker.brush.selection.Count - 1], prop);
+				if(selection.Length > 0)
+					serializer.Serialize(selection[selection.Length - 1], prop);
 				else
 					serializer.Serialize(null, prop);
 				picker.Dispose();
 				Reset();
 			} else {
-				serializer.SerializeArray(picker.brush.selection.ToArray(), prop.FindPropertyRelative("collection"));
+				serializer.SerializeArray(selection, prop.FindPropertyRelative("collection"));
 			}
 		}
 

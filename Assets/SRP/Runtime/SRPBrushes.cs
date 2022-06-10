@@ -23,7 +23,14 @@ namespace LoneTower.SRP {
 			"LoneTower.SRP.DrawerGeneric",
 			"LoneTower.SRP.ComponentPicker",
 			"LoneTower.SRP.ComponentSerializer") {
-
+		}
+		public SRPSingle(Type t) : base(
+		   "LoneTower.SRP.BrushSingle",
+		   "LoneTower.SRP.ParserTransform",
+		   "LoneTower.SRP.DrawerGeneric",
+		   "LoneTower.SRP.ComponentPicker",
+		   "LoneTower.SRP.ComponentSerializer") {
+			selectType = t;
 		}
 	}
 	public class SRPTopDown : SRPAttribute {
