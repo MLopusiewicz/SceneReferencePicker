@@ -14,7 +14,9 @@ namespace LoneTower.SRP {
 
 
 		protected override void StartStroke(object[] obj) {
-			base.StartStroke(clicked = obj);
+			selection.AddRange(obj);
+			clicked = selection.ToArray();
+			base.StartStroke(clicked);
 		}
 
 		protected override void Stroke(object[] t) {
