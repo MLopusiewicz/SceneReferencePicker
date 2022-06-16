@@ -32,7 +32,7 @@ namespace LoneTower.SRP {
 			if(state != null)
 				picker.State = state.Value;
 
-			picker.drawer.Show();
+			picker.VisibilityOn();
 		}
 
 		protected SRPController GetPicker() {

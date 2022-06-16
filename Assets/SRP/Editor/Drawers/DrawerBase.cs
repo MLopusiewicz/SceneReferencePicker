@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace LoneTower.SRP {
-	public abstract class DrawerBase : IDisposable {
+	public abstract class DrawerBase : IDisposable, IDrawer {
 
 		public static SelectionBank<Color> ColorBank {
 			get {
