@@ -27,3 +27,6 @@ base
 - Interface support added (SRPInterface attribute)
 - works on private [Serialize Field]
 - minor bug fixes
+
+### 3.1.1
+- samples updated to match newest version
