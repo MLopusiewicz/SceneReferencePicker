@@ -13,7 +13,7 @@ namespace LoneTower.SRP {
 			if(!(t is Component)) {
 				throw new System.Exception($"[SRP] Wrong type. Expected {typeof(Component)} was:  {t.GetType().Name} ");
 			}
-			return (t as Component).transform.position;
+			return (t as Component).transform.position; 
 		}
 	}
 }

@@ -25,6 +25,7 @@ namespace LoneTower.SRP {
 		public bool showSelection { get; set; }
 		public bool showMarks { get; set; }
 		public bool showHandle { get; set; }
+		public bool userShowSelection { get; set; }
 
 		public ParserBase drawTarget;
 
@@ -68,7 +69,7 @@ namespace LoneTower.SRP {
 				}
 			}
 
-			if(showSelection) {
+			if(showSelection && userShowSelection) {
 				Handles.color = color;
 				DrawSelection(drawTarget.Selection);
 			}

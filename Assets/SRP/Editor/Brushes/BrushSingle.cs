@@ -10,10 +10,9 @@ namespace LoneTower.SRP {
 		object[] clicked;
 		public BrushSingle(ScenePickerBase t, List<object> list = null) : base(t, list) {
 
-		}
-
-
+		} 
 		protected override void StartStroke(object[] obj) {
+			selection.Clear();
 			selection.AddRange(obj);
 			clicked = selection.ToArray();
 			base.StartStroke(clicked);
@@ -25,6 +24,7 @@ namespace LoneTower.SRP {
 		protected override void EndStroke(object[] a) {
 			base.EndStroke(clicked);
 		}
+
 		protected override void SetHover(object[] obj) {
 			if(stroking) {
 				hover = clicked;
